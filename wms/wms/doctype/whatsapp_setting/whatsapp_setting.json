@@ -1,0 +1,56 @@
+{
+ "creation": "2021-10-16 14:25:17.944614",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "field_details",
+  "url",
+  "api_key",
+  "api_secret"
+ ],
+ "fields": [
+  {
+   "fieldname": "field_details",
+   "fieldtype": "Heading",
+   "label": "Field Details"
+  },
+  {
+   "fieldname": "url",
+   "fieldtype": "Data",
+   "label": "URL"
+  },
+  {
+   "fieldname": "api_key",
+   "fieldtype": "Data",
+   "label": "API Key"
+  },
+  {
+   "fieldname": "api_secret",
+   "fieldtype": "Data",
+   "label": "API Secret"
+  }
+ ],
+ "issingle": 1,
+ "modified": "2021-10-19 09:34:13.391574",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "WhatsApp Setting",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

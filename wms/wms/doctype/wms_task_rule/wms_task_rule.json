@@ -1,0 +1,167 @@
+{
+ "autoname": "WTASKR.#####",
+ "creation": "2021-12-09 02:24:06.982231",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "task_title",
+  "due_days",
+  "column_break_3",
+  "assign_from",
+  "assign_to",
+  "recurring",
+  "event",
+  "section_break_5",
+  "task_details",
+  "section_break_3",
+  "frequency",
+  "column_break_9",
+  "day_of_week",
+  "date_of_month",
+  "month_of_year",
+  "section_break_13",
+  "based_on",
+  "column_break_15",
+  "ref_doctype",
+  "fields"
+ ],
+ "fields": [
+  {
+   "fieldname": "task_title",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Task Title"
+  },
+  {
+   "fieldname": "due_days",
+   "fieldtype": "Int",
+   "label": "Due Days"
+  },
+  {
+   "depends_on": "recurring",
+   "fieldname": "section_break_3",
+   "fieldtype": "Section Break",
+   "label": "Frequency Details"
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Select",
+   "label": "Frequency",
+   "options": "\nDaily\nWeekly\nMonthly\nYearly"
+  },
+  {
+   "depends_on": "eval:doc.frequency == \"Weekly\" || doc.frequency == \"Yearly\"",
+   "fieldname": "day_of_week",
+   "fieldtype": "Select",
+   "label": "Day of Week",
+   "options": "\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday\nSunday"
+  },
+  {
+   "depends_on": "eval:doc.frequency == \"Monthly\" || doc.frequency == \"Yearly\"",
+   "fieldname": "date_of_month",
+   "fieldtype": "Select",
+   "label": "Date of Month",
+   "options": "\n1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12\n13\n14\n15\n16\n17\n18\n19\n20\n21\n22\n23\n24\n25\n26\n27\n28\n29\n30\n31"
+  },
+  {
+   "depends_on": "eval:doc.frequency == \"Yearly\"",
+   "fieldname": "month_of_year",
+   "fieldtype": "Select",
+   "label": "Month of Year",
+   "options": "1\n2\n3\n4\n5\n6\n7\n8\n9\n10\n11\n12"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "assign_to",
+   "fieldtype": "Link",
+   "label": "Assign To",
+   "options": "User"
+  },
+  {
+   "fieldname": "section_break_5",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "task_details",
+   "fieldtype": "Small Text",
+   "label": "Task Details"
+  },
+  {
+   "fieldname": "column_break_9",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "event",
+   "fieldname": "section_break_13",
+   "fieldtype": "Section Break",
+   "label": "Event Details"
+  },
+  {
+   "fieldname": "based_on",
+   "fieldtype": "Select",
+   "label": "Based On",
+   "options": "\nNew\nSave\nSubmit\nCancel\nValue Change"
+  },
+  {
+   "fieldname": "ref_doctype",
+   "fieldtype": "Link",
+   "label": "Doctype",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "column_break_15",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "recurring",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Recurring"
+  },
+  {
+   "default": "0",
+   "fieldname": "event",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Event"
+  },
+  {
+   "fieldname": "assign_from",
+   "fieldtype": "Link",
+   "label": "Assign From",
+   "options": "User"
+  },
+  {
+   "fieldname": "fields",
+   "fieldtype": "Select",
+   "label": "Fields"
+  }
+ ],
+ "modified": "2021-12-15 19:06:07.263825",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "WMS Task Rule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

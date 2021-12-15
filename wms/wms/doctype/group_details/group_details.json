@@ -1,0 +1,29 @@
+{
+ "creation": "2021-10-19 11:41:11.081185",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "wms_lead"
+ ],
+ "fields": [
+  {
+   "fieldname": "wms_lead",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "WMS Lead",
+   "options": "WMS Lead"
+  }
+ ],
+ "istable": 1,
+ "modified": "2021-10-19 11:45:48.873162",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "Group Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

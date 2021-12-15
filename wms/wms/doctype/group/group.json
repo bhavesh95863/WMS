@@ -1,0 +1,89 @@
+{
+ "autoname": "format:{group_name}-{#####}",
+ "creation": "2021-10-19 11:39:14.875197",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "group_name",
+  "mode_of_sending_section",
+  "teams",
+  "column_break_4",
+  "sms",
+  "column_break_6",
+  "whatsapp",
+  "group_details_section",
+  "table_9"
+ ],
+ "fields": [
+  {
+   "fieldname": "group_name",
+   "fieldtype": "Data",
+   "label": "Group Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "mode_of_sending_section",
+   "fieldtype": "Section Break",
+   "label": "Mode of Sending"
+  },
+  {
+   "default": "0",
+   "fieldname": "teams",
+   "fieldtype": "Check",
+   "label": "Teams"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "sms",
+   "fieldtype": "Check",
+   "label": "SMS"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "whatsapp",
+   "fieldtype": "Check",
+   "label": "Whatsapp"
+  },
+  {
+   "fieldname": "group_details_section",
+   "fieldtype": "Section Break",
+   "label": "Group Details"
+  },
+  {
+   "fieldname": "table_9",
+   "fieldtype": "Table",
+   "options": "Group Details"
+  }
+ ],
+ "modified": "2021-10-19 12:05:39.464414",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "Group",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

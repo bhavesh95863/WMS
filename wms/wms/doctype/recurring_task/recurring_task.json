@@ -1,0 +1,88 @@
+{
+ "autoname": "RECC.#####",
+ "creation": "2021-10-26 03:10:50.090352",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "reference_task",
+  "frequency",
+  "day_of_month",
+  "day_of_week",
+  "month_of_year",
+  "column_break_6",
+  "start_date",
+  "end_date"
+ ],
+ "fields": [
+  {
+   "fieldname": "reference_task",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Reference Task",
+   "options": "Works To Get Done",
+   "reqd": 1
+  },
+  {
+   "fieldname": "frequency",
+   "fieldtype": "Select",
+   "label": "Frequency",
+   "options": "Daily\nWeekly\nMonthly\nYearly"
+  },
+  {
+   "depends_on": "eval:doc.frequency == \"Monthly\"",
+   "fieldname": "day_of_month",
+   "fieldtype": "Int",
+   "label": "Day Of Month"
+  },
+  {
+   "depends_on": "eval:doc.frequency == \"Weekly\"",
+   "fieldname": "day_of_week",
+   "fieldtype": "Select",
+   "label": "Day Of Week",
+   "options": "\nSunday\nMonday\nTuesday\nWednesday\nThursday\nFriday\nSaturday"
+  },
+  {
+   "depends_on": "eval:doc.frequency == \"Yearly\"",
+   "fieldname": "month_of_year",
+   "fieldtype": "Int",
+   "label": "Month Of Year"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "start_date",
+   "fieldtype": "Date",
+   "label": "Start Date"
+  },
+  {
+   "fieldname": "end_date",
+   "fieldtype": "Date",
+   "label": "End Date"
+  }
+ ],
+ "modified": "2021-10-26 03:11:10.203122",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "Recurring Task",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,186 @@
+{
+ "autoname": "WTASK.#####",
+ "creation": "2021-12-09 01:14:15.428871",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "task_title",
+  "date_of_issue",
+  "due_date",
+  "status",
+  "column_break_3",
+  "source",
+  "date_of_completion",
+  "section_break_6",
+  "details",
+  "section_break_8",
+  "assign_by",
+  "column_break_10",
+  "assign_to"
+ ],
+ "fields": [
+  {
+   "default": "Now",
+   "fieldname": "date_of_issue",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Date of Issue"
+  },
+  {
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Status",
+   "options": "\nNot Yet Due\nDue Today\nWithout Due Date\nOntime\nLate\nOverdue",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "source",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Source",
+   "options": "Manual\nERP\nRecurring",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_of_completion",
+   "fieldtype": "Datetime",
+   "in_list_view": 1,
+   "label": "Date of Completion"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Small Text",
+   "label": "Details"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "assign_to",
+   "fieldtype": "Link",
+   "label": "Assign To",
+   "options": "User"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "user",
+   "fieldname": "assign_by",
+   "fieldtype": "Link",
+   "label": "Assign From",
+   "options": "User"
+  },
+  {
+   "fieldname": "task_title",
+   "fieldtype": "Data",
+   "label": "Task Title"
+  },
+  {
+   "fieldname": "due_date",
+   "fieldtype": "Date",
+   "label": "Due Date"
+  }
+ ],
+ "modified": "2021-12-15 18:53:21.006227",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "WMS Task",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS User",
+   "share": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Admin",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "permlevel": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

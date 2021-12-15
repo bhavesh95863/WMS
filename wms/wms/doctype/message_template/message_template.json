@@ -1,0 +1,45 @@
+{
+ "autoname": "MSGTMP.#####",
+ "creation": "2021-10-19 12:33:48.248250",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "template_name",
+  "template_message"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_name",
+   "fieldtype": "Data",
+   "label": "Template Name"
+  },
+  {
+   "fieldname": "template_message",
+   "fieldtype": "Small Text",
+   "label": "Template Message"
+  }
+ ],
+ "modified": "2021-10-19 12:36:14.860236",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "Message Template",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
