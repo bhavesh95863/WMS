@@ -1,0 +1,116 @@
+{
+ "autoname": "field:name1",
+ "creation": "2021-12-26 02:28:41.983126",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "name1",
+  "column_break_2",
+  "sms",
+  "whatsapp",
+  "teams",
+  "section_break_2",
+  "ref_doctype",
+  "mobile_no_field",
+  "column_break_4",
+  "based_on",
+  "fields",
+  "section_break_7",
+  "message_template"
+ ],
+ "fields": [
+  {
+   "fieldname": "name1",
+   "fieldtype": "Data",
+   "label": "Name",
+   "unique": 1
+  },
+  {
+   "fieldname": "section_break_2",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "ref_doctype",
+   "fieldtype": "Link",
+   "label": "Document Type",
+   "options": "DocType"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "based_on",
+   "fieldtype": "Select",
+   "label": "Based On",
+   "options": "\nNew\nSave\nSubmit\nCancel\nValue Change"
+  },
+  {
+   "fieldname": "fields",
+   "fieldtype": "Select",
+   "label": "Fields"
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "sms",
+   "fieldtype": "Check",
+   "label": "SMS"
+  },
+  {
+   "default": "0",
+   "fieldname": "whatsapp",
+   "fieldtype": "Check",
+   "label": "Whatsapp"
+  },
+  {
+   "default": "0",
+   "fieldname": "teams",
+   "fieldtype": "Check",
+   "label": "Teams"
+  },
+  {
+   "fieldname": "message_template",
+   "fieldtype": "Link",
+   "label": "Message Template",
+   "options": "Message Template"
+  },
+  {
+   "fieldname": "mobile_no_field",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Mobile No Field",
+   "reqd": 1
+  }
+ ],
+ "modified": "2021-12-26 16:26:29.154094",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "Message Rule",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

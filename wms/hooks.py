@@ -80,21 +80,21 @@ app_license = "MIT"
 # Hook on document methods and events
 
 doc_events = {
-	"*": {
-		"on_submit": "wms.event.task.create_task_for_event",
-		"after_insert": "wms.event.task.create_task_for_event",
-		"on_cancel": "wms.event.task.create_task_for_event",
-        "after_save":"wms.event.task.create_task_for_event",
-		"on_change":"wms.event.task.create_task_for_event"
-	}
+    "*": {
+        "on_submit": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"],
+        "after_insert": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"],
+        "on_cancel": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"],
+        "after_save": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"],
+        "on_change": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"]
+    }
 }
 
 # Scheduled Tasks
 # ---------------
 scheduler_events = {
-	"daily": [
-		"wms.event.task.create_task_for_recurring"
-	]
+    "daily": [
+        "wms.event.task.create_task_for_recurring"
+    ]
 }
 # scheduler_events = {
 # 	"all": [
@@ -132,4 +132,3 @@ scheduler_events = {
 # override_doctype_dashboards = {
 # 	"Task": "wms.task.get_dashboard_data"
 # }
-

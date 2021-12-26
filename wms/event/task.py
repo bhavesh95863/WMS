@@ -5,7 +5,7 @@ from frappe.utils import today, getdate, cint, now, add_days, parse_val
 def create_task_for_event(doc, method):
     if (frappe.flags.in_import and frappe.flags.mute_emails) or frappe.flags.in_patch or frappe.flags.in_install:
         return
-    get_task_template(doc,doc.doctype, method)
+    get_task_template(doc, doc.doctype, method)
 
 
 def create_task_for_recurring():
@@ -31,7 +31,7 @@ def create_task_for_recurring():
     evalute_recuring_task(templates)
 
 
-def get_task_template(self,doctype, method):
+def get_task_template(self, doctype, method):
     event_map = {
         "on_submit": "Submit",
         "after_insert": "New",
@@ -47,31 +47,34 @@ def get_task_template(self,doctype, method):
     tasks = frappe.get_all("WMS Task Rule", filters={
                            "based_on": based_on, "ref_doctype": doctype}, fields=["*"])
     if tasks:
-        evalute_event_task(self,based_on,tasks)
+        evalute_event_task(self, based_on, tasks)
 
 
-def evalute_event_task(self,based_on,tasks):
+def evalute_event_task(self, based_on, tasks):
     for task in tasks:
-        if based_on=="Value Change" and not self.is_new():
+        if based_on == "Value Change" and not self.is_new():
             if not frappe.db.has_column(self.doctype, task.fields):
                 continue
             else:
                 doc_before_save = self.get_doc_before_save()
-                field_value_before_save = doc_before_save.get(task.fields) if doc_before_save else None
+                field_value_before_save = doc_before_save.get(
+                    task.fields) if doc_before_save else None
                 field_value_before_save = parse_val(field_value_before_save)
                 if (self.get(task.fields) == field_value_before_save):
                     # value not changed
                     continue
                 else:
-                    create_task(task,"ERP")
+                    create_task(task, "ERP")
         else:
-            create_task(task,"ERP")
+            create_task(task, "ERP")
+
 
 def evalute_recuring_task(tasks):
     for task in tasks:
-        create_task(task,"Recurring")
+        create_task(task, "Recurring")
 
-def create_task(task,task_type):
+
+def create_task(task, task_type):
     doc = frappe.get_doc(dict(
         doctype="WMS Task",
         date_of_issue=now(),

@@ -8,12 +8,20 @@
   "task_title",
   "date_of_issue",
   "due_date",
-  "status",
   "column_break_3",
+  "status",
   "source",
   "date_of_completion",
+  "extend_section",
+  "date_extend_request",
+  "approve",
+  "reject",
+  "column_break_12",
+  "reason",
   "section_break_6",
   "details",
+  "section_break_10",
+  "task_extend_details",
   "section_break_8",
   "assign_by",
   "column_break_10",
@@ -32,7 +40,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Status",
-   "options": "\nNot Yet Due\nDue Today\nWithout Due Date\nOntime\nLate\nOverdue",
+   "options": "\nNot Yet Due\nDue Today\nWithout Due Date\nOntime\nLate\nOverdue\nExtend Required",
    "read_only": 1
   },
   {
@@ -92,9 +100,49 @@
    "fieldname": "due_date",
    "fieldtype": "Date",
    "label": "Due Date"
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "task_extend_details",
+   "fieldtype": "Table",
+   "label": "Task Extend Details",
+   "options": "Task Extend Details",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_extend_request",
+   "fieldtype": "Date",
+   "label": "Date Extend Request"
+  },
+  {
+   "fieldname": "reason",
+   "fieldtype": "Small Text",
+   "label": "Reason"
+  },
+  {
+   "fieldname": "approve",
+   "fieldtype": "Button",
+   "label": "Approve"
+  },
+  {
+   "fieldname": "reject",
+   "fieldtype": "Button",
+   "label": "Reject"
+  },
+  {
+   "depends_on": "eval:doc.status == \"Extend Required\"",
+   "fieldname": "extend_section",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
   }
  ],
- "modified": "2021-12-15 18:53:21.006227",
+ "modified": "2021-12-20 10:48:46.096818",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task",

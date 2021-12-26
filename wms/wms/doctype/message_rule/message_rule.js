@@ -1,8 +1,13 @@
 // Copyright (c) 2021, Bhavesh and contributors
 // For license information, please see license.txt
 
+frappe.ui.form.on('Message Rule', {
+	// refresh: function(frm) {
 
-frappe.ui.form.on('WMS Task Rule', {
+	// }
+});
+
+frappe.ui.form.on('Message Rule', {
 	setup_fieldname_select: function (frm) {
 		console.log('call')
 		// get the doctype to update fields
@@ -30,6 +35,8 @@ frappe.ui.form.on('WMS Task Rule', {
 
 			// set value changed options
 			frm.set_df_property('fields', 'options', [''].concat(options));
+			frm.set_df_property('mobile_no_field', 'options', [''].concat(options));
+
 
 
 		});

@@ -4,35 +4,34 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "field_details",
   "url",
-  "api_key",
-  "api_secret"
+  "column_break_2",
+  "whatsapp_number",
+  "token"
  ],
  "fields": [
-  {
-   "fieldname": "field_details",
-   "fieldtype": "Heading",
-   "label": "Field Details"
-  },
   {
    "fieldname": "url",
    "fieldtype": "Data",
    "label": "URL"
   },
   {
-   "fieldname": "api_key",
-   "fieldtype": "Data",
-   "label": "API Key"
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
   },
   {
-   "fieldname": "api_secret",
+   "fieldname": "whatsapp_number",
    "fieldtype": "Data",
-   "label": "API Secret"
+   "label": "Whatsapp Number"
+  },
+  {
+   "fieldname": "token",
+   "fieldtype": "Small Text",
+   "label": "Token"
   }
  ],
  "issingle": 1,
- "modified": "2021-10-19 09:34:13.391574",
+ "modified": "2021-12-26 02:36:39.468176",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WhatsApp Setting",

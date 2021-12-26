@@ -4,32 +4,63 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe.utils import getdate,today,now
+from frappe.utils import getdate, today, now
 from frappe.model.document import Document
 
+
 class WMSTask(Document):
-	def validate(self):
-		if not self.due_date:
-			self.status = "Without Due Date"
-		elif self.date_of_completion and getdate(self.date_of_completion) <= getdate(self.due_date):
-			self.status = "Ontime"
-		elif self.date_of_completion and getdate(self.date_of_completion) > getdate(self.due_date):
-			self.status = "Late"
-		elif self.due_date and getdate(self.due_date) == getdate(today()):
-			self.status = "Due Today"
-		elif self.due_date and getdate(self.due_date) > getdate(today()):
-			self.status = "Not Yet Due"
-		elif self.due_date and getdate(self.due_date) < getdate(today()):
-			self.status = "Overdue"
+    def validate(self):
+        if self.date_extend_request:
+            self.status = "Extend Required"
+        elif not self.due_date:
+            self.status = "Without Due Date"
+        elif self.date_of_completion and getdate(self.date_of_completion) <= getdate(self.due_date):
+            self.status = "Ontime"
+        elif self.date_of_completion and getdate(self.date_of_completion) > getdate(self.due_date):
+            self.status = "Late"
+        elif self.due_date and getdate(self.due_date) == getdate(today()):
+            self.status = "Due Today"
+        elif self.due_date and getdate(self.due_date) > getdate(today()):
+            self.status = "Not Yet Due"
+        elif self.due_date and getdate(self.due_date) < getdate(today()):
+            self.status = "Overdue"
 
-	def mark_complete(self):
-		if not self.date_of_completion:
-			self.date_of_completion = now()
-		self.save()
+ 
 
+    def mark_complete(self):
+        if not self.date_of_completion:
+            self.date_of_completion = now()
+        self.save()
 
-	def mark_uncomplete(self):
-		self.date_of_completion = ''
-		self.save()
-	
+    def mark_uncomplete(self):
+        self.date_of_completion = ''
+        self.save()
 
+    def approve_extend_request(self):
+        self.append("task_extend_details",dict(
+            extend_date = self.date_extend_request,
+            reason = self.reason,
+            action = "Approve"
+        ))
+        self.due_date = self.date_extend_request
+        self.date_extend_request = ""
+        self.reason = ""
+        self.save()
+    
+    def reject_extend_request(self):
+        self.append("task_extend_details",dict(
+            extend_date = self.date_extend_request,
+            reason = self.reason,
+            action = "Reject"
+        ))
+        # self.due_date = self.date_extend_request
+        self.date_extend_request = ""
+        self.reason = ""
+        self.save()
+
+@frappe.whitelist()
+def extend_date_request(task_id,date,reason=None):
+    task_doc = frappe.get_doc("WMS Task",task_id)
+    task_doc.date_extend_request = date
+    task_doc.reason = reason
+    task_doc.save()

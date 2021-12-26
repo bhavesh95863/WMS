@@ -2,6 +2,26 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('WMS Task', {
+	approve:function(frm){
+		frm.call({
+			doc:frm.doc,
+			method:'approve_extend_request',
+			freeze:true,
+			callback:function(r){
+				frm.refresh()
+			}
+		})
+	},
+	reject:function(frm){
+		frm.call({
+			doc:frm.doc,
+			method:'reject_extend_request',
+			freeze:true,
+			callback:function(r){
+				frm.refresh()
+			}
+		})
+	},
 	refresh: function(frm) {
 		if(frm.doc.status == "Not Yet Due" || frm.doc.status == "Due Today" || frm.doc.status == "Without Due Date" || frm.doc.status == "Overdue") {
 			frm.add_custom_button(__('Mark Complete'), function() {
@@ -13,6 +33,39 @@ frappe.ui.form.on('WMS Task', {
 						frm.refresh()
 					}
 				})
+			});
+			frm.add_custom_button(__('Date Extend'), function() {
+				const dialog = new frappe.ui.Dialog({
+					title: __("Select Difference Account"),
+					fields: [
+						{
+							fieldtype:'Date',
+							fieldname:"extend_date",
+							label: __("Extend Date")
+						},
+						{
+							fieldtype:'Small Text',
+							fieldname:"reason",
+							label: __("Reason")
+						}
+					],
+					primary_action: (data) => {
+						dialog.hide();
+						frm.call({
+							method:'wms.wms.doctype.wms_task.wms_task.extend_date_request',
+							args:{"task_id":frm.doc.name,"date":data.extend_date,"reason":data.reason},
+							freeze:true,
+							callback:function(r){
+								frm.refresh()
+							}
+						})
+					},
+					primary_action_label: __('Extend')
+				});
+	
+	
+				dialog.show();
+
 			});
 		}
 		if(frm.doc.status == "Ontime" || frm.doc.status == "Late") {
