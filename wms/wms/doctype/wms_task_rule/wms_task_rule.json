@@ -12,6 +12,7 @@
   "assign_to",
   "recurring",
   "event",
+  "enabled",
   "section_break_5",
   "task_details",
   "section_break_3",
@@ -22,9 +23,13 @@
   "month_of_year",
   "section_break_13",
   "based_on",
+  "date_changed",
+  "days_in_advance",
+  "condition",
   "column_break_15",
   "ref_doctype",
-  "fields"
+  "fields",
+  "section_break_23"
  ],
  "fields": [
   {
@@ -87,7 +92,7 @@
   },
   {
    "fieldname": "task_details",
-   "fieldtype": "Small Text",
+   "fieldtype": "Code",
    "label": "Task Details"
   },
   {
@@ -104,7 +109,7 @@
    "fieldname": "based_on",
    "fieldtype": "Select",
    "label": "Based On",
-   "options": "\nNew\nSave\nSubmit\nCancel\nValue Change"
+   "options": "\nNew\nSave\nSubmit\nCancel\nValue Change\nDays After\nDays Before"
   },
   {
    "fieldname": "ref_doctype",
@@ -140,9 +145,36 @@
    "fieldname": "fields",
    "fieldtype": "Select",
    "label": "Fields"
+  },
+  {
+   "depends_on": "eval:doc.ref_doctype && (doc.based_on==\"Days After\" || doc.based_on==\"Days Before\")",
+   "fieldname": "days_in_advance",
+   "fieldtype": "Int",
+   "label": "Days Before or After"
+  },
+  {
+   "depends_on": "eval:doc.ref_doctype && (doc.based_on==\"Days After\" || doc.based_on==\"Days Before\")",
+   "fieldname": "date_changed",
+   "fieldtype": "Select",
+   "label": "Reference Date"
+  },
+  {
+   "fieldname": "section_break_23",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "condition",
+   "fieldtype": "Code",
+   "label": "Condition"
+  },
+  {
+   "default": "0",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
   }
  ],
- "modified": "2021-12-15 19:06:07.263825",
+ "modified": "2022-01-04 19:08:48.690088",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task Rule",

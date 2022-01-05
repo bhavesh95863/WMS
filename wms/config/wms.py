@@ -31,7 +31,22 @@ def get_data():
                     "type": "doctype",
                     "name": "WhatsApp Setting",
                     "label": _("WhatsApp Setting")
-                }   
+                },
+                {
+                    "type": "doctype",
+                    "name": "WMS Task",
+                    "label": _("Task")
+                },
+                {
+                    "type": "doctype",
+                    "name": "WMS Task Rule",
+                    "label": _("Task Rule")
+                },
+                {
+                    "type": "doctype",
+                    "name": "Message Rule",
+                    "label": _("Message Rule")
+                }  
             ]
         }
     ]

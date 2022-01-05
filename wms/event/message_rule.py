@@ -52,10 +52,10 @@ def send_message_using_template(self,rule):
     template_doc = frappe.get_doc("Message Template",rule.message_template)
     if rule.whatsapp:
         data = []
-        for field in template_doc.template_variables.split(","):
+        for field in template_doc.template_variable:
             data.append({
-                'name': field,
-                'value': self.get(field)
+                'name': field.get('template_variable'),
+                'value': self.get(field.get('document_variable'))
             })
         send_whatsapp_message(template_doc.template_name,self.get(rule.mobile_no_field),json.dumps(data),self.name)
     if rule.sms:
@@ -72,9 +72,6 @@ def send_sms_message(message,receiver_list):
     send_sms(receiver_list,message)
 
 def send_whatsapp_message(template,mobile,data,document):
-    # template = "new_referral_introduction"
-    # mobile = "916359985959"
-    # data = json.dumps([{'name':'company','value':'Oberoi Thermit Pvt. Ltd.'}])
     whatsapp_setting = frappe.get_doc("WhatsApp Setting","WhatsApp Setting")
     base_url = whatsapp_setting.get('url') + "/api/v1/sendTemplateMessage/" + whatsapp_setting.get('whatsapp_number') + "?whatsappNumber=" + mobile
     payload = json.dumps({
@@ -102,5 +99,3 @@ def send_whatsapp_message(template,mobile,data,document):
 
     )).insert(ignore_permissions = True)
     frappe.msgprint(_('Whatsapp Message sent on {0}').format(mobile), alert=True, indicator='green')
-    # print(response.text)
-

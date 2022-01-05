@@ -12,10 +12,14 @@ class MessageTemplate(Document):
 		template_message = self.template_message.format()
 		res = re.findall(r'\{.*?\}', template_message)
 		template_variables = ""
+		self.template_variable = []
 		for variable in res:
 			if not template_variables == "":
 				template_variables += ","
 			variable = variable.replace('{','')
 			variable = variable.replace('}','')
 			template_variables += f"{variable}"
+			self.append("template_variable",dict(
+				template_variable = variable
+			))
 		self.template_variables = template_variables

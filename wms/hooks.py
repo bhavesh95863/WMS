@@ -89,6 +89,11 @@ doc_events = {
     }
 }
 
+permission_query_conditions = {
+	"WMS Task": "wms.wms.doctype.wms_task.wms_task.get_permission_query_conditions"
+}
+
+
 # Scheduled Tasks
 # ---------------
 scheduler_events = {

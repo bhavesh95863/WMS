@@ -20,7 +20,18 @@ frappe.ui.form.on('WMS Task Rule', {
 					label: df.fieldname + ' (' + __(df.label) + ')'
 				};
 			};
-
+			let get_date_change_options = function() {
+				let date_options = $.map(fields, function(d) {
+					return d.fieldtype == 'Date' || d.fieldtype == 'Datetime'
+						? get_select_options(d)
+						: null;
+				});
+				// append creation and modified date to Date Change field
+				return date_options.concat([
+					{ value: 'creation', label: `creation (${__('Created On')})` },
+					{ value: 'modified', label: `modified (${__('Last Modified Date')})` }
+				]);
+			};
 
 			let fields = frappe.get_doc('DocType', frm.doc.ref_doctype).fields;
 			let options = $.map(fields, function (d) {
@@ -30,6 +41,7 @@ frappe.ui.form.on('WMS Task Rule', {
 
 			// set value changed options
 			frm.set_df_property('fields', 'options', [''].concat(options));
+			frm.set_df_property('date_changed', 'options', get_date_change_options());
 
 
 		});

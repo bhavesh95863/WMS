@@ -69,16 +69,19 @@ frappe.ui.form.on('WMS Task', {
 			});
 		}
 		if(frm.doc.status == "Ontime" || frm.doc.status == "Late") {
-			frm.add_custom_button(__('Reopen'), function() {
-				frm.call({
-					doc:frm.doc,
-					method:'mark_uncomplete',
-					freeze:true,
-					callback:function(r){
-						frm.refresh()
-					}
-				})
-			});
+			if(frappe.user.has_role('WMS Admin') || frappe.user.has_role('WMS Manager')){
+				frm.add_custom_button(__('Reopen'), function() {
+					frm.call({
+						doc:frm.doc,
+						method:'mark_uncomplete',
+						freeze:true,
+						callback:function(r){
+							frm.refresh()
+						}
+					})
+				});
+			}
+
 		}
 	}
 });

@@ -12,6 +12,7 @@
   "status",
   "source",
   "date_of_completion",
+  "completed",
   "extend_section",
   "date_extend_request",
   "approve",
@@ -58,6 +59,7 @@
   {
    "fieldname": "date_of_completion",
    "fieldtype": "Datetime",
+   "hidden": 1,
    "in_list_view": 1,
    "label": "Date of Completion"
   },
@@ -125,12 +127,14 @@
   {
    "fieldname": "approve",
    "fieldtype": "Button",
-   "label": "Approve"
+   "label": "Approve",
+   "permlevel": 1
   },
   {
    "fieldname": "reject",
    "fieldtype": "Button",
-   "label": "Reject"
+   "label": "Reject",
+   "permlevel": 1
   },
   {
    "depends_on": "eval:doc.status == \"Extend Required\"",
@@ -140,9 +144,16 @@
   {
    "fieldname": "column_break_12",
    "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "completed",
+   "fieldtype": "Check",
+   "hidden": 1,
+   "label": "Completed"
   }
  ],
- "modified": "2021-12-20 10:48:46.096818",
+ "modified": "2022-01-05 19:46:56.381326",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task",

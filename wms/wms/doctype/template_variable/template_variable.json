@@ -1,0 +1,35 @@
+{
+ "creation": "2022-01-04 17:28:21.293450",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "template_variable",
+  "document_variable"
+ ],
+ "fields": [
+  {
+   "fieldname": "template_variable",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Template Variable"
+  },
+  {
+   "fieldname": "document_variable",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Document Variable"
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-01-04 17:28:21.293450",
+ "modified_by": "Administrator",
+ "module": "WMS",
+ "name": "Template Variable",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
