@@ -167,3 +167,10 @@ def create_task(task, task_type, context=None):
 
 def get_context(doc):
 	return {"doc": doc, "nowdate": nowdate, "frappe": frappe._dict(utils=get_safe_globals().get("frappe").get("utils"))}
+
+@frappe.whitelist()
+def update_task_status():
+	tasks = frappe.get_all("WMS Task",filters={},fields=["name"])
+	for task in tasks:
+		task_doc = frappe.get_doc("WMS Task",task.name)
+		task_doc.save()

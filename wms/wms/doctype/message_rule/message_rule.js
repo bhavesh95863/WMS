@@ -9,7 +9,6 @@ frappe.ui.form.on('Message Rule', {
 
 frappe.ui.form.on('Message Rule', {
 	setup_fieldname_select: function (frm) {
-		console.log('call')
 		// get the doctype to update fields
 		if (!frm.doc.ref_doctype) {
 			return;
@@ -37,6 +36,12 @@ frappe.ui.form.on('Message Rule', {
 			frm.set_df_property('fields', 'options', [''].concat(options));
 			frm.set_df_property('mobile_no_field', 'options', [''].concat(options));
 
+			frappe.meta.get_docfield("Template Variable", "document_variable",
+				// set first option as blank to allow notification not to be defaulted to the owner
+				frm.doc.name).options = [""].concat(options);
+
+			frm.fields_dict.template_variable.grid.refresh();
+
 
 
 		});
@@ -49,6 +54,9 @@ frappe.ui.form.on('Message Rule', {
 				}
 			};
 		});
+	},
+	setup:function(frm){
+		frm.trigger('setup_fieldname_select')
 	},
 	refresh: function (frm) {
 		frm.trigger('setup_fieldname_select')

@@ -1,12 +1,11 @@
 {
- "creation": "2022-01-04 17:28:21.293450",
+ "creation": "2022-01-29 19:49:56.912014",
  "doctype": "DocType",
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
   "template_variable",
-  "document_variable",
-  "ref_doctype"
+  "value"
  ],
  "fields": [
   {
@@ -16,23 +15,17 @@
    "label": "Template Variable"
   },
   {
-   "fieldname": "document_variable",
-   "fieldtype": "Select",
+   "fieldname": "value",
+   "fieldtype": "Small Text",
    "in_list_view": 1,
-   "label": "Document Variable"
-  },
-  {
-   "fieldname": "ref_doctype",
-   "fieldtype": "Link",
-   "label": "Ref Doctype",
-   "options": "DocType"
+   "label": "Value"
   }
  ],
  "istable": 1,
- "modified": "2022-03-12 12:31:39.190451",
+ "modified": "2022-03-12 16:53:35.216098",
  "modified_by": "Administrator",
  "module": "WMS",
- "name": "Template Variable",
+ "name": "Send SMS Variables",
  "owner": "Administrator",
  "permissions": [],
  "quick_entry": 1,

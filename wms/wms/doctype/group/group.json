@@ -6,12 +6,18 @@
  "engine": "InnoDB",
  "field_order": [
   "group_name",
+  "column_break_2",
+  "group_type",
   "mode_of_sending_section",
   "teams",
   "column_break_4",
   "sms",
   "column_break_6",
   "whatsapp",
+  "section_break_10",
+  "enable_all",
+  "column_break_12",
+  "disable_all",
   "group_details_section",
   "table_9"
  ],
@@ -19,7 +25,9 @@
   {
    "fieldname": "group_name",
    "fieldtype": "Data",
+   "in_list_view": 1,
    "label": "Group Name",
+   "reqd": 1,
    "unique": 1
   },
   {
@@ -62,9 +70,39 @@
    "fieldname": "table_9",
    "fieldtype": "Table",
    "options": "Group Details"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "group_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Group Type",
+   "options": "\nCustomer\nSupplier\nEmployee\nSales Order\nQuotation\nWMS Lead",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_10",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "enable_all",
+   "fieldtype": "Button",
+   "label": "Enable All"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "disable_all",
+   "fieldtype": "Button",
+   "label": "Disable All"
   }
  ],
- "modified": "2021-10-19 12:05:39.464414",
+ "modified": "2022-03-12 02:22:43.806590",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Group",

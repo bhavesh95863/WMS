@@ -12,9 +12,13 @@
   "group",
   "column_break_6",
   "schedule_date_and_time",
+  "sent",
   "message_details_section",
   "message_format",
-  "message"
+  "message",
+  "column_break_11",
+  "message_variable",
+  "amended_from"
  ],
  "fields": [
   {
@@ -27,13 +31,15 @@
   {
    "fieldname": "when_to_send",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "When To Send",
-   "options": "\nNow\nSchedule"
+   "options": "\nNow\nSchedule",
+   "reqd": 1
   },
   {
    "depends_on": "eval:doc.when_to_send==\"Schedule\";",
    "fieldname": "schedule_date_and_time",
-   "fieldtype": "Date",
+   "fieldtype": "Datetime",
    "label": "Schedule Date And Time"
   },
   {
@@ -43,9 +49,11 @@
    "options": "Message Template"
   },
   {
+   "fetch_from": "message_format.template_message",
    "fieldname": "message",
-   "fieldtype": "Small Text",
-   "label": "Message"
+   "fieldtype": "Text Editor",
+   "label": "Message",
+   "read_only": 1
   },
   {
    "fieldname": "column_break_2",
@@ -67,11 +75,43 @@
   {
    "fieldname": "message_send_to",
    "fieldtype": "Select",
+   "in_list_view": 1,
    "label": "Message Send To",
-   "options": "\nAll Suppliers\nAll Employees\nAll Sales Order\nAll Leads\nGroup"
+   "options": "\nAll Suppliers\nAll Employees\nAll Sales Order\nAll Leads\nGroup",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "message_variable",
+   "fieldtype": "Table",
+   "label": "Send SMS Variables",
+   "options": "Send SMS Variables",
+   "read_only": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Send SMS",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "allow_on_submit": 1,
+   "default": "0",
+   "depends_on": "eval:doc.when_to_send == \"Schedule\"",
+   "fieldname": "sent",
+   "fieldtype": "Check",
+   "label": "Sent",
+   "read_only": 1
   }
  ],
- "modified": "2021-10-20 19:11:58.610195",
+ "is_submittable": 1,
+ "modified": "2022-01-31 20:48:58.644568",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Send SMS",

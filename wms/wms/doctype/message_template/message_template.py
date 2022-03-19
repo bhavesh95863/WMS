@@ -11,15 +11,12 @@ class MessageTemplate(Document):
 	def validate(self):
 		template_message = self.template_message.format()
 		res = re.findall(r'\{.*?\}', template_message)
-		template_variables = ""
-		self.template_variable = []
+		# self.template_variable = []
+		self.template_variables = ""
 		for variable in res:
-			if not template_variables == "":
-				template_variables += ","
+			if not self.template_variables == "":
+				self.template_variables += ","
 			variable = variable.replace('{','')
 			variable = variable.replace('}','')
-			template_variables += f"{variable}"
-			self.append("template_variable",dict(
-				template_variable = variable
-			))
-		self.template_variables = template_variables
+			self.template_variables += f"{variable}"
+		self.template_variables = self.template_variables

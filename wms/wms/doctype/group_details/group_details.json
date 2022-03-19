@@ -4,19 +4,51 @@
  "editable_grid": 1,
  "engine": "InnoDB",
  "field_order": [
-  "wms_lead"
+  "group_type",
+  "link",
+  "name_group",
+  "mobile",
+  "enable"
  ],
  "fields": [
   {
-   "fieldname": "wms_lead",
-   "fieldtype": "Link",
+   "columns": 3,
+   "default": "0",
+   "fieldname": "enable",
+   "fieldtype": "Check",
    "in_list_view": 1,
-   "label": "WMS Lead",
-   "options": "WMS Lead"
+   "label": "Enable"
+  },
+  {
+   "fieldname": "group_type",
+   "fieldtype": "Link",
+   "label": "Group Type",
+   "options": "DocType"
+  },
+  {
+   "columns": 2,
+   "fieldname": "link",
+   "fieldtype": "Dynamic Link",
+   "in_list_view": 1,
+   "label": "Link",
+   "options": "group_type",
+   "read_only": 1
+  },
+  {
+   "fieldname": "name_group",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Name"
+  },
+  {
+   "fieldname": "mobile",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Mobile"
   }
  ],
  "istable": 1,
- "modified": "2021-10-19 11:45:48.873162",
+ "modified": "2022-02-08 17:38:26.520554",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Group Details",

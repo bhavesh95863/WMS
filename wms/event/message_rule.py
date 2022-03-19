@@ -49,23 +49,47 @@ def evalute_message_rule(self, based_on, rules):
 
 
 def send_message_using_template(self,rule):
+    rule = frappe.get_doc("Message Rule",rule.name)
     template_doc = frappe.get_doc("Message Template",rule.message_template)
+    so_fields = ["mobile1","mobile2","mobile3"]
     if rule.whatsapp:
         data = []
-        for field in template_doc.template_variable:
+        frappe.errprint(rule)
+        for field in rule.template_variable:
             data.append({
                 'name': field.get('template_variable'),
                 'value': self.get(field.get('document_variable'))
             })
-        send_whatsapp_message(template_doc.template_name,self.get(rule.mobile_no_field),json.dumps(data),self.name)
+        if rule.rule_based_on == "Sales Order":
+            if rule.ref_doctype == "Sales Order":
+                so_doc = self
+            else:
+                so_doc = frappe.get_doc("Sales Order",self.get(rule.sales_order_field))
+            for mobile in so_fields:
+                if so_doc.get(mobile):
+                    send_whatsapp_message(template_doc.template_name,so_doc.get(mobile),json.dumps(data),self.name)
+        else:
+            send_whatsapp_message(template_doc.template_name,self.get(rule.mobile_no_field),json.dumps(data),self.name)
+
     if rule.sms:
         data = {}
-        for field in template_doc.template_variables.split(","):
+        for field in rule.template_variables.split(","):
             data[field] = self.get(field)
         message = frappe.render_template(template_doc.template_message,data)
         receiver_list = []
-        receiver_list.append(self.get(rule.mobile_no_field))
+        if rule.rule_based_on == "Sales Order":
+        
+            if rule.ref_doctype == "Sales Order":
+                so_doc = self
+            else:
+                so_doc = frappe.get_doc("Sales Order",self.get(rule.sales_order_field))
+            for mobile in so_fields:
+                if so_doc.get(mobile):
+                    receiver_list.append(so_doc.get(mobile))
+        else:
+            receiver_list.append(self.get(rule.mobile_no_field))
         send_sms_message(message,receiver_list)
+
 
 def send_sms_message(message,receiver_list):
     from frappe.core.doctype.sms_settings.sms_settings import send_sms
@@ -73,7 +97,7 @@ def send_sms_message(message,receiver_list):
 
 def send_whatsapp_message(template,mobile,data,document):
     whatsapp_setting = frappe.get_doc("WhatsApp Setting","WhatsApp Setting")
-    base_url = whatsapp_setting.get('url') + "/api/v1/sendTemplateMessage/" + whatsapp_setting.get('whatsapp_number') + "?whatsappNumber=" + mobile
+    base_url = whatsapp_setting.get('url') + "/api/v1/sendTemplateMessage/" + mobile + "?whatsappNumber=" + whatsapp_setting.get('whatsapp_number')
     payload = json.dumps({
     "template_name": template,
     "broadcast_name": template,

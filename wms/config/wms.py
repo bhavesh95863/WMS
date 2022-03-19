@@ -48,5 +48,17 @@ def get_data():
                     "label": _("Message Rule")
                 }  
             ]
+        },
+        {
+            "label": _("Reports"),
+            "icon": "octicon octicon-briefcase",
+            "items": [
+				{
+					"type": "report",
+					"name": "Performance Report",
+					"doctype": "WMS Task",
+					"is_query_report": True
+				},
+            ]
         }
     ]

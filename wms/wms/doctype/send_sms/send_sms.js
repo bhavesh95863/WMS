@@ -2,7 +2,14 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('Send SMS', {
-	// refresh: function(frm) {
-
-	// }
+	message_format: function(frm,cdt,cdn) {
+		var doc = locals[cdt][cdn];
+		frm.call({
+			method:"get_variables",
+			doc: frm.doc,
+			callback:function(r){
+				frm.refresh_field("message_variable");
+			}
+		})
+	}
 });

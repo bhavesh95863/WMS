@@ -8,16 +8,24 @@
   "name1",
   "column_break_2",
   "sms",
+  "cb_sms",
   "whatsapp",
+  "cb_whatsapp",
   "teams",
   "section_break_2",
+  "rule_based_on",
   "ref_doctype",
+  "sales_order_field",
   "mobile_no_field",
   "column_break_4",
   "based_on",
   "fields",
   "section_break_7",
-  "message_template"
+  "message_template",
+  "column_break_14",
+  "template_variable",
+  "section_break_16",
+  "template_variables"
  ],
  "fields": [
   {
@@ -34,7 +42,8 @@
    "fieldname": "ref_doctype",
    "fieldtype": "Link",
    "label": "Document Type",
-   "options": "DocType"
+   "options": "DocType",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_4",
@@ -47,6 +56,7 @@
    "options": "\nNew\nSave\nSubmit\nCancel\nValue Change"
   },
   {
+   "depends_on": "eval:doc.based_on == \"Value Change\"",
    "fieldname": "fields",
    "fieldtype": "Select",
    "label": "Fields"
@@ -57,7 +67,7 @@
   },
   {
    "fieldname": "column_break_2",
-   "fieldtype": "Column Break"
+   "fieldtype": "Section Break"
   },
   {
    "default": "0",
@@ -81,17 +91,59 @@
    "fieldname": "message_template",
    "fieldtype": "Link",
    "label": "Message Template",
-   "options": "Message Template"
+   "options": "Message Template",
+   "reqd": 1
   },
   {
+   "depends_on": "eval:doc.rule_based_on == \"Sales Order\"",
+   "fieldname": "sales_order_field",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Sales Order Field Name",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "template_variable",
+   "fieldtype": "Table",
+   "label": "Template Variable",
+   "options": "Template Variable"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break",
+   "hidden": 1
+  },
+  {
+   "fieldname": "template_variables",
+   "fieldtype": "Small Text",
+   "label": "Template Variables"
+  },
+  {
+   "fieldname": "cb_sms",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "cb_whatsapp",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "rule_based_on",
+   "fieldtype": "Select",
+   "label": "Rule Based On",
+   "options": "Sales Order\nOther"
+  },
+  {
+   "depends_on": "eval:doc.rule_based_on == \"Other\"",
    "fieldname": "mobile_no_field",
    "fieldtype": "Select",
-   "in_list_view": 1,
-   "label": "Mobile No Field",
-   "reqd": 1
+   "label": "Mobile No"
   }
  ],
- "modified": "2021-12-26 16:26:29.154094",
+ "modified": "2022-03-20 01:16:51.159210",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Message Rule",

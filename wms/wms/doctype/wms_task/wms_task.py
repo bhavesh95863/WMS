@@ -36,12 +36,14 @@ class WMSTask(Document):
 
 	def mark_uncomplete(self):
 		self.date_of_completion = ''
+		self.mark_incomplete = 1
 		self.completed = 0
 		self.flags.ignore_permissions = True
 		self.save()
 
 	def approve_extend_request(self):
 		self.append("task_extend_details",dict(
+			due_date_before_extend = self.due_date,
 			extend_date = self.date_extend_request,
 			reason = self.reason,
 			action = "Approve"
@@ -54,6 +56,7 @@ class WMSTask(Document):
 	
 	def reject_extend_request(self):
 		self.append("task_extend_details",dict(
+			due_date_before_extend = self.due_date,
 			extend_date = self.date_extend_request,
 			reason = self.reason,
 			action = "Reject"

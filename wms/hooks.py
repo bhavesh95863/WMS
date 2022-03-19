@@ -86,6 +86,9 @@ doc_events = {
         "on_cancel": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"],
         "after_save": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"],
         "on_change": ["wms.event.task.create_task_for_event", "wms.event.message_rule.send_message_for_event"]
+    },
+    "Communication":{
+        "after_insert":"wms.event.communication.after_insert_communication"
     }
 }
 
@@ -97,6 +100,11 @@ permission_query_conditions = {
 # Scheduled Tasks
 # ---------------
 scheduler_events = {
+	"cron": {
+		"* * * * *": [
+			"wms.wms.doctype.send_sms.send_sms.cron_job_for_schedule_message"
+		]
+	},
     "daily": [
         "wms.event.task.create_task_for_recurring"
     ]

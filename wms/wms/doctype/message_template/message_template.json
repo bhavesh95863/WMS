@@ -1,5 +1,6 @@
 {
- "autoname": "MSGTMP.#####",
+ "allow_rename": 1,
+ "autoname": "field:template_name",
  "creation": "2021-10-19 12:33:48.248250",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -9,14 +10,14 @@
   "section_break_2",
   "template_message",
   "column_break_4",
-  "template_variables",
-  "template_variable"
+  "template_variables"
  ],
  "fields": [
   {
    "fieldname": "template_name",
    "fieldtype": "Data",
-   "label": "Template Name"
+   "label": "Template Name",
+   "unique": 1
   },
   {
    "fieldname": "template_message",
@@ -36,15 +37,9 @@
   {
    "fieldname": "column_break_4",
    "fieldtype": "Column Break"
-  },
-  {
-   "fieldname": "template_variable",
-   "fieldtype": "Table",
-   "label": "Template Variable",
-   "options": "Template Variable"
   }
  ],
- "modified": "2022-01-04 17:28:40.950733",
+ "modified": "2022-03-12 16:50:05.994399",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Message Template",
