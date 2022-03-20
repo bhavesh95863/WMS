@@ -100,27 +100,23 @@ def send_message_group(doc):
 	message_template_data = get_template_data(doc)
 	for row in group_doc.table_9:
 		if row.enable:
-			if row.group_type == "Customer":
-				mobile_no = frappe.db.get_value("Customer",row.link,"whatsapp_mobile_no")
-				if mobile_no:
-					if group_doc.get('whatsapp'):
-						send_whatsapp_message(doc.message_format,mobile_no, message_template_data, doc.name)
-					if group_doc.get('sms'):
-						send_text_message(doc,mobile_no)
-			if row.group_type == "Supplier":
-				mobile_no = frappe.db.get_value("Supplier",row.link,"mobile_no")
-				if mobile_no:
-					if group_doc.get('whatsapp'):
-						send_whatsapp_message(doc.message_format,mobile_no, message_template_data, doc.name)
-					if group_doc.get('sms'):
-						send_text_message(doc,mobile_no)
-			if row.group_type == "Employee":
-				mobile_no = frappe.db.get_value("Employee",row.link,"cell_number")
-				if mobile_no:
-					if group_doc.get('whatsapp'):
-						send_whatsapp_message(doc.message_format,mobile_no, message_template_data, doc.name)
-					if group_doc.get('sms'):
-						send_text_message(doc,mobile_no)
+			# if row.group_type == "Customer":
+			# 	mobile_no = frappe.db.get_value("Customer",row.link,"whatsapp_mobile_no")
+			# 	if mobile_no:
+			# 		if group_doc.get('whatsapp'):
+			# 			send_whatsapp_message(doc.message_format,mobile_no, message_template_data, doc.name)
+			# 		if group_doc.get('sms'):
+			# 			send_text_message(doc,mobile_no)
+			if row.group_type == "Supplier" and row.mobile:
+				if group_doc.get('whatsapp'):
+					send_whatsapp_message(doc.message_format,row.mobile, message_template_data, doc.name)
+				if group_doc.get('sms'):
+					send_text_message(doc,row.mobile)
+			if row.group_type == "Employee" and row.mobile:
+				if group_doc.get('whatsapp'):
+					send_whatsapp_message(doc.message_format,row.mobile, message_template_data, doc.name)
+				if group_doc.get('sms'):
+					send_text_message(doc,row.mobile)
 			if row.group_type == "Sales Order":
 				order_doc = frappe.get_doc("Sales Order",row.link)
 				if order_doc.mobile1:
@@ -139,12 +135,10 @@ def send_message_group(doc):
 					if group_doc.get('sms'):
 						send_text_message(doc,order_doc.mobile3)
 			if row.group_type == "WMS Lead":
-				mobile_no = frappe.db.get_value("WMS Lead",row.link,"mobile_number")
-				if mobile_no:
-					if group_doc.get('whatsapp'):
-						send_whatsapp_message(doc.message_format,mobile_no, message_template_data, doc.name)
-					if group_doc.get('sms'):
-						send_text_message(doc,mobile_no)
+				if group_doc.get('whatsapp'):
+					send_whatsapp_message(doc.message_format,row.mobile, message_template_data, doc.name)
+				if group_doc.get('sms'):
+					send_text_message(doc,row.mobile)
 
 def send_text_message(doc,mobile_no):
 	data = {}

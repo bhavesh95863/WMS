@@ -1,4 +1,5 @@
 {
+ "allow_import": 1,
  "autoname": "WTASKR.#####",
  "creation": "2021-12-09 02:24:06.982231",
  "doctype": "DocType",
@@ -174,7 +175,7 @@
    "label": "Enabled"
   }
  ],
- "modified": "2022-01-04 19:08:48.690088",
+ "modified": "2022-03-20 13:54:37.886768",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task Rule",
@@ -189,6 +190,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Admin",
    "share": 1,
    "write": 1
   }

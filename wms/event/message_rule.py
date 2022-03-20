@@ -2,7 +2,7 @@ from re import template
 import frappe
 from frappe import _
 import json
-from frappe.utils import today, getdate, cint, now, add_days, parse_val
+from frappe.utils import today, getdate, cint, now, add_days, parse_val, cstr
 import requests
 
 def send_message_for_event(doc, method):
@@ -96,6 +96,7 @@ def send_sms_message(message,receiver_list):
     send_sms(receiver_list,message)
 
 def send_whatsapp_message(template,mobile,data,document):
+    mobile = '91' + cstr(mobile)
     whatsapp_setting = frappe.get_doc("WhatsApp Setting","WhatsApp Setting")
     base_url = whatsapp_setting.get('url') + "/api/v1/sendTemplateMessage/" + mobile + "?whatsappNumber=" + whatsapp_setting.get('whatsapp_number')
     payload = json.dumps({

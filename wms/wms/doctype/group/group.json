@@ -80,7 +80,7 @@
    "fieldtype": "Select",
    "in_list_view": 1,
    "label": "Group Type",
-   "options": "\nCustomer\nSupplier\nEmployee\nSales Order\nQuotation\nWMS Lead",
+   "options": "\nSupplier\nEmployee\nSales Order\nQuotation\nWMS Lead",
    "reqd": 1
   },
   {
@@ -102,7 +102,7 @@
    "label": "Disable All"
   }
  ],
- "modified": "2022-03-12 02:22:43.806590",
+ "modified": "2022-03-20 13:53:59.115704",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Group",
@@ -117,6 +117,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Admin",
    "share": 1,
    "write": 1
   }

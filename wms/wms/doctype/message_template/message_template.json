@@ -1,4 +1,5 @@
 {
+ "allow_import": 1,
  "allow_rename": 1,
  "autoname": "field:template_name",
  "creation": "2021-10-19 12:33:48.248250",
@@ -39,7 +40,7 @@
    "fieldtype": "Column Break"
   }
  ],
- "modified": "2022-03-12 16:50:05.994399",
+ "modified": "2022-03-20 13:12:16.695635",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Message Template",

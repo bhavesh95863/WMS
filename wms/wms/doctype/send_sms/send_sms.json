@@ -111,13 +111,14 @@
   }
  ],
  "is_submittable": 1,
- "modified": "2022-01-31 20:48:58.644568",
+ "modified": "2022-03-20 13:54:22.152916",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Send SMS",
  "owner": "Administrator",
  "permissions": [
   {
+   "cancel": 1,
    "create": 1,
    "delete": 1,
    "email": 1,
@@ -127,6 +128,21 @@
    "report": 1,
    "role": "System Manager",
    "share": 1,
+   "submit": 1,
+   "write": 1
+  },
+  {
+   "cancel": 1,
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Admin",
+   "share": 1,
+   "submit": 1,
    "write": 1
   }
  ],

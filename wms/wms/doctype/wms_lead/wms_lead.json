@@ -45,7 +45,7 @@
    "label": "Email ID"
   }
  ],
- "modified": "2022-02-08 17:31:50.987518",
+ "modified": "2022-03-20 13:55:08.552493",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Lead",
@@ -60,6 +60,18 @@
    "read": 1,
    "report": 1,
    "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Admin",
    "share": 1,
    "write": 1
   }

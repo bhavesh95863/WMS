@@ -91,7 +91,7 @@ def get_data(filters):
 				row = dict(
 					date_from = filters.get("from_date"),
 					date_to = filters.get("to_date"),
-					employee_name = frappe.db.get_value("User",user.name,"username")
+					employee_name = frappe.db.get_value("User",user.name,"full_name")
 				)
 				get_filters_data(row,issues)
 				data.append(row)
@@ -101,7 +101,7 @@ def get_data(filters):
 		row = dict(
 			date_from = filters.get("from_date"),
 			date_to = filters.get("to_date"),
-			employee_name = frappe.db.get_value("User",filters.get("employee"),"username")
+			employee_name = frappe.db.get_value("User",filters.get("employee"),"full_name")
 		)
 		get_filters_data(row,issues)
 		data.append(row)

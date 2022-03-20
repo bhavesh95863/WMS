@@ -8,7 +8,9 @@
   "link",
   "name_group",
   "mobile",
-  "enable"
+  "enable",
+  "mobile2",
+  "mobile3"
  ],
  "fields": [
   {
@@ -45,10 +47,20 @@
    "fieldtype": "Read Only",
    "in_list_view": 1,
    "label": "Mobile"
+  },
+  {
+   "fieldname": "mobile2",
+   "fieldtype": "Read Only",
+   "label": "Mobile2"
+  },
+  {
+   "fieldname": "mobile3",
+   "fieldtype": "Read Only",
+   "label": "Mobile3"
   }
  ],
  "istable": 1,
- "modified": "2022-02-08 17:38:26.520554",
+ "modified": "2022-03-20 13:14:39.436817",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Group Details",
