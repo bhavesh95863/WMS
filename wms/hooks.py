@@ -106,7 +106,8 @@ scheduler_events = {
 		]
 	},
     "daily": [
-        "wms.event.task.create_task_for_recurring"
+        "wms.event.task.create_task_for_recurring",
+        "wms.event.task.update_task_status"
     ]
 }
 # scheduler_events = {

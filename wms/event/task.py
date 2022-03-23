@@ -170,7 +170,13 @@ def get_context(doc):
 
 @frappe.whitelist()
 def update_task_status():
-	tasks = frappe.get_all("WMS Task",filters={},fields=["name"])
+	filters = [
+		["status","not in",["Completed"]]
+	]
+	tasks = frappe.get_all("WMS Task",filters=filters,fields=["name"])
 	for task in tasks:
 		task_doc = frappe.get_doc("WMS Task",task.name)
-		task_doc.save()
+		old_status = task_doc.status
+		task_doc.validate()
+		if not task_doc.status == old_status:
+			task_doc.save()

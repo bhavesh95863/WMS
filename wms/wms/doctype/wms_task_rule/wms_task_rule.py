@@ -11,7 +11,8 @@ from frappe import _
 
 class WMSTaskRule(Document):
 	def validate(self):
-		self.validate_condition()
+		if self.condition:
+			self.validate_condition()
 
 	def validate_condition(self):
 		temp_doc = frappe.new_doc(self.ref_doctype)
