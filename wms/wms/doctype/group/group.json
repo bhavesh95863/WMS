@@ -1,5 +1,5 @@
 {
- "autoname": "format:{group_name}-{#####}",
+ "autoname": "field:group_name",
  "creation": "2021-10-19 11:39:14.875197",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -102,7 +102,7 @@
    "label": "Disable All"
   }
  ],
- "modified": "2022-03-20 13:53:59.115704",
+ "modified": "2022-03-27 02:48:43.718374",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Group",

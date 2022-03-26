@@ -2,8 +2,10 @@ from re import template
 import frappe
 from frappe import _
 import json
-from frappe.utils import today, getdate, cint, now, add_days, parse_val, cstr
+from frappe.utils import today, getdate, cint, now, add_days, parse_val, cstr,nowdate
 import requests
+from frappe.utils.safe_exec import get_safe_globals
+from frappe import _
 
 def send_message_for_event(doc, method):
     if (frappe.flags.in_import and frappe.flags.mute_emails) or frappe.flags.in_patch or frappe.flags.in_install:
@@ -24,13 +26,17 @@ def get_message_rule(self, doctype, method):
     if not based_on:
         return
     rules = frappe.get_all("Message Rule", filters={
-                           "based_on": based_on, "ref_doctype": doctype}, fields=["*"])
+                           "based_on": based_on, "ref_doctype": doctype, "enable":1}, fields=["*"])
     if rules:
         evalute_message_rule(self, based_on, rules)
 
 
 def evalute_message_rule(self, based_on, rules):
     for rule in rules:
+        context = get_context(self)
+        if context and rule.conditions:
+            if not frappe.safe_eval(rule.conditions, None, context):
+                return
         if based_on == "Value Change" and not self.is_new():
             if not frappe.db.has_column(self.doctype, rule.fields):
                 continue
@@ -47,6 +53,9 @@ def evalute_message_rule(self, based_on, rules):
         else:
             send_message_using_template(self,rule)
 
+def get_context(doc):
+	return {"doc": doc, "nowdate": nowdate, "frappe": frappe._dict(utils=get_safe_globals().get("frappe").get("utils"))}
+
 
 def send_message_using_template(self,rule):
     rule = frappe.get_doc("Message Rule",rule.name)
@@ -54,7 +63,6 @@ def send_message_using_template(self,rule):
     so_fields = ["mobile1","mobile2","mobile3"]
     if rule.whatsapp:
         data = []
-        frappe.errprint(rule)
         for field in rule.template_variable:
             data.append({
                 'name': field.get('template_variable'),

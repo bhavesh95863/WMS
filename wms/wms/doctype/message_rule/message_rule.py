@@ -6,6 +6,9 @@ from __future__ import unicode_literals
 import frappe
 from frappe.model.document import Document
 import re
+from frappe.utils import nowdate
+from frappe.utils.safe_exec import get_safe_globals
+from frappe import _
 
 class MessageRule(Document):
 	def validate(self):
@@ -14,6 +17,20 @@ class MessageRule(Document):
 		if self.rule_based_on == "Other":
 			self.validate_mobile_no_field()
 		self.set_variable()
+		if self.conditions:
+			self.validate_condition()
+
+	def validate_condition(self):
+		if self.rule_based_on == "Sales Order":
+			ref_doctype = "Sales Order"
+		else:
+			ref_doctype = self.ref_doctype
+		temp_doc = frappe.new_doc(ref_doctype)
+		if self.conditions:
+			try:
+				frappe.safe_eval(self.conditions, None, get_context(temp_doc.as_dict()))
+			except Exception:
+				frappe.throw(_("The Condition '{0}' is invalid").format(self.condition))
 
 	def validate_mobile_no_field(self):
 		if not self.mobile_no_field:
@@ -53,3 +70,6 @@ class MessageRule(Document):
 					template_variable = variable,
 					ref_doctype = self.ref_doctype
 				))
+
+def get_context(doc):
+	return {"doc": doc, "nowdate": nowdate, "frappe": frappe._dict(utils=get_safe_globals().get("frappe").get("utils"))}

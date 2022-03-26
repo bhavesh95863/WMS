@@ -2,6 +2,11 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('WMS Task', {
+	onload:function(frm) {
+		if(frm.doc.__islocal){
+			frappe.model.set_value(cdt,cdn,"assign_by",frappe.session.user)
+		}
+	},
 	approve:function(frm){
 		frm.call({
 			doc:frm.doc,
