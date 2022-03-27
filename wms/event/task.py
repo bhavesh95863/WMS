@@ -108,7 +108,7 @@ def get_task_template(self, doctype, method):
 	if not based_on:
 		return
 	tasks = frappe.get_all("WMS Task Rule", filters={
-						   "based_on": based_on, "ref_doctype": doctype}, fields=["*"])
+						   "based_on": based_on, "ref_doctype": doctype, "enabled":1}, fields=["*"])
 	if tasks:
 		evalute_event_task(self, based_on, tasks)
 
