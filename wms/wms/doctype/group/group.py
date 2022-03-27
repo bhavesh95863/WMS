@@ -52,5 +52,25 @@ class Group(Document):
 		for row in self.table_9:
 			row.enable = 0
 		self.save()
-	
+
+@frappe.whitelist()
+def update_new_mobile_no(document_type,document_id,group_detail_id):
+	doctype_mobile_no_field_map = {
+		"Supplier":"mobile_no",
+		"Employee":"cell_number",
+		"Quotation":"mobile_number_of_contact_person",
+		"WMS Lead":"mobile_number"
+	}
+	if document_type == "Sales Order":
+		so_doc = frappe.db.get_("Sales Order",document_id)
+		frappe.db.set_value("Group Details",group_detail_id,"mobile",so_doc.mobile1)
+		frappe.db.set_value("Group Details",group_detail_id,"mobile2",so_doc.mobile2)
+		frappe.db.set_value("Group Details",group_detail_id,"mobile3",so_doc.mobile3)
+		return {"mobile":so_doc.mobile1,"mobile1":so_doc.mobile2,"mobile2":so_doc.mobile3}
+	else:
+		if doctype_mobile_no_field_map[document_type]:
+			mobile_no = frappe.db.get_value(document_type,document_id,doctype_mobile_no_field_map[document_type])
+			if mobile_no:
+				frappe.db.set_value("Group Details",group_detail_id,"mobile",mobile_no)
+		return {"mobile":mobile_no,"mobile1":"","mobile2":""}
 

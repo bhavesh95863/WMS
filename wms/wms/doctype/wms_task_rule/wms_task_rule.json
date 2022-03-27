@@ -1,6 +1,6 @@
 {
  "allow_import": 1,
- "autoname": "WTASKR.#####",
+ "autoname": "field:task_title",
  "creation": "2021-12-09 02:24:06.982231",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -37,7 +37,8 @@
    "fieldname": "task_title",
    "fieldtype": "Data",
    "in_list_view": 1,
-   "label": "Task Title"
+   "label": "Task Title",
+   "unique": 1
   },
   {
    "fieldname": "due_days",
@@ -175,7 +176,7 @@
    "label": "Enabled"
   }
  ],
- "modified": "2022-03-20 13:54:37.886768",
+ "modified": "2022-03-27 11:05:52.880099",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task Rule",

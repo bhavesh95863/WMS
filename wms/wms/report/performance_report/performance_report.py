@@ -50,6 +50,12 @@ def get_columns(filters):
 			"width": 200
 		},
 		{
+			"label": _("Due Today"),
+			"fieldtype": "Int",
+			"fieldname": "due_today",
+			"width": 200
+		},
+		{
 			"label": _("Tasks overdue"),
 			"fieldtype": "Int",
 			"fieldname": "tasks_overdue",
@@ -82,7 +88,10 @@ def get_columns(filters):
 def get_data(filters):
 	data = []
 	if not filters.get("employee"):
-		users = frappe.get_all("User",filters={"enabled":1},fields=["name"])
+		if "WMS Admin" in frappe.get_roles():
+			users = frappe.get_all("User",filters={"enabled":1},fields=["name"])
+		else:
+			users = get_users()
 		for user in users:
 			if not user.name in ["Administrator"]:
 				frappe.errprint(user.get('name'))
@@ -107,6 +116,16 @@ def get_data(filters):
 		data.append(row)
 	return data
 
+def get_users():
+	employees = []
+	emp_id = frappe.db.get_value("Employee",{"user_id":frappe.session.user},"name")
+	if emp_id:
+		employees.append(emp_id)
+	reporting_employees = frappe.get_all("Employee",filters={"reports_to":emp_id},fields=["name"])
+	for row in reporting_employees:
+		employees.append(row.name)
+	return frappe.db.sql("""select user_id as 'name' from `tabEmployee` where name in ({0}) """.format(', '.join(frappe.db.escape(i) for i in employees)),as_dict=1)
+
 
 def get_filters_data(row,issues):
 	row["total_task_till_today"] = len(issues)
@@ -115,6 +134,7 @@ def get_filters_data(row,issues):
 	row["tasks_overdue"] = len(list(filter(lambda x: x['status'] == "Overdue", issues)))
 	row["tasks_without_due_date"] = len(list(filter(lambda x: x['status'] == "Without Due Date", issues)))
 	row["tasks_marked_complete_incorrectly"] = len(list(filter(lambda x: int(x['mark_incomplete']) == 1, issues)))
+	row["due_today"] = len(list(filter(lambda x: x['status'] == "Due Today", issues)))
 
 	if (row["total_task_till_today"] > 0):
 		task_not_complete = row["total_completed_late"] + row["tasks_overdue"] + row["tasks_without_due_date"]

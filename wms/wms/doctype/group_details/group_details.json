@@ -10,7 +10,9 @@
   "mobile",
   "enable",
   "mobile2",
-  "mobile3"
+  "mobile3",
+  "column_break_8",
+  "fetch_updated_mobile_no"
  ],
  "fields": [
   {
@@ -57,10 +59,19 @@
    "fieldname": "mobile3",
    "fieldtype": "Read Only",
    "label": "Mobile3"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "fetch_updated_mobile_no",
+   "fieldtype": "Button",
+   "label": "Fetch Updated Mobile No"
   }
  ],
  "istable": 1,
- "modified": "2022-03-20 13:14:39.436817",
+ "modified": "2022-03-28 00:38:35.287255",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Group Details",

@@ -35,5 +35,29 @@ frappe.ui.form.on('Group', {
 				frm.refresh_field("table_9");
 			}
 		})
-	}
+	},
 });
+
+frappe.ui.form.on('Group Details', {
+	fetch_updated_mobile_no: function(frm,cdt,cdn) {
+		var doc = locals[cdt][cdn]
+		frappe.call({
+			method:"wms.wms.doctype.group.group.update_new_mobile_no",
+			args:{'document_type':doc.group_type,'document_id':doc.link,'group_detail_id':doc.name},
+			freeze:true,
+			freeze_message:'Getting Updated Details',
+			callback:function(r){
+				if(r.message){
+					// frm.refresh_field('mobile')
+					// frappe.model.set_value(cdt,cdn,"mobile",r.message.mobile)
+					// frappe.model.set_value(cdt,cdn,"mobile2",r.message.mobile2)
+					// frappe.model.set_value(cdt,cdn,"mobile3",r.message.mobile3)
+
+					cur_frm.refresh_field('table_9')
+					cur_frm.reload_doc()
+				}
+			}
+
+		})
+	}
+})

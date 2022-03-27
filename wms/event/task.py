@@ -4,12 +4,19 @@ from frappe.utils.safe_exec import get_safe_globals
 
 
 def create_task_for_event(doc, method):
-	if (frappe.flags.in_import and frappe.flags.mute_emails) or frappe.flags.in_patch or frappe.flags.in_install:
-		return
-	get_task_template(doc, doc.doctype, method)
+	try:
+		if (frappe.flags.in_import and frappe.flags.mute_emails) or frappe.flags.in_patch or frappe.flags.in_install:
+			return
+		get_task_template(doc, doc.doctype, method)
+	except Exception as e:
+		frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
+
 
 def trigger_daily_alerts():
-	trigger_notifications(None, "daily")
+	try:
+		trigger_notifications(None, "daily")
+	except Exception as e:
+		frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
 
 def trigger_notifications(doc, method=None):
 	if frappe.flags.in_import or frappe.flags.in_patch:
@@ -63,27 +70,29 @@ def get_documents_for_today(self):
 
 
 def create_task_for_recurring():
-	templates = []
-	tasks = frappe.get_all("WMS Task Rule", filters={
-						   "recurring": 1}, fields=["*"])
-	for row in tasks:
-		if row.frequency == "Daily":
-			templates.append(row)
-		if row.frequency == "Monthly":
-			today_day = getdate(today()).day
-			if cint(today_day) == cint(row.date_of_month):
+	try:
+		templates = []
+		tasks = frappe.get_all("WMS Task Rule", filters={
+							"recurring": 1}, fields=["*"])
+		for row in tasks:
+			if row.frequency == "Daily":
 				templates.append(row)
-		if row.frequency == "Weekly":
-			today_day_name = getdate(today()).strftime('%A')
-			if today_day_name == row.day_of_week:
-				templates.append(row)
-		if row.frequency == "Yearly":
-			today_day = getdate(today()).day
-			today_month = getdate(today()).month
-			if cint(today_day) == cint(row.date_of_month) and cint(today_month) == cint(row.month_of_year):
-				templates.append(row)
-	evalute_recuring_task(templates)
-
+			if row.frequency == "Monthly":
+				today_day = getdate(today()).day
+				if cint(today_day) == cint(row.date_of_month):
+					templates.append(row)
+			if row.frequency == "Weekly":
+				today_day_name = getdate(today()).strftime('%A')
+				if today_day_name == row.day_of_week:
+					templates.append(row)
+			if row.frequency == "Yearly":
+				today_day = getdate(today()).day
+				today_month = getdate(today()).month
+				if cint(today_day) == cint(row.date_of_month) and cint(today_month) == cint(row.month_of_year):
+					templates.append(row)
+		evalute_recuring_task(templates)
+	except Exception as e:
+		frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
 
 def get_task_template(self, doctype, method):
 	event_map = {
@@ -99,7 +108,7 @@ def get_task_template(self, doctype, method):
 	if not based_on:
 		return
 	tasks = frappe.get_all("WMS Task Rule", filters={
-						   "based_on": based_on, "ref_doctype": doctype, "enable":1}, fields=["*"])
+						   "based_on": based_on, "ref_doctype": doctype}, fields=["*"])
 	if tasks:
 		evalute_event_task(self, based_on, tasks)
 

@@ -8,9 +8,12 @@ from frappe.utils.safe_exec import get_safe_globals
 from frappe import _
 
 def send_message_for_event(doc, method):
-    if (frappe.flags.in_import and frappe.flags.mute_emails) or frappe.flags.in_patch or frappe.flags.in_install:
-        return
-    get_message_rule(doc, doc.doctype, method)
+    try:
+        if (frappe.flags.in_import and frappe.flags.mute_emails) or frappe.flags.in_patch or frappe.flags.in_install:
+            return
+        get_message_rule(doc, doc.doctype, method)
+    except Exception as e:
+        frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
 
 def get_message_rule(self, doctype, method):
     event_map = {

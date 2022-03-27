@@ -24,12 +24,13 @@ class WMSTask(Document):
 			self.status = "Not Yet Due"
 		elif self.due_date and getdate(self.due_date) < getdate(today()):
 			self.status = "Overdue"
+		self.validate_date()
 
  
 	def validate_date(self):
-		if self.__islocal:
+		if self.get('__islocal'):
 			if getdate(self.date_of_issue) < getdate(today()):
-				frappe.throw("Date Of Issue Must Be Greater Than Today")
+				frappe.throw("Date Of Issue Must Be Today or Greater Than Today")
 
 
 	def mark_complete(self):
