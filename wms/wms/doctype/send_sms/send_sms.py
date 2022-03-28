@@ -47,6 +47,10 @@ WHERE docstatus=1
 	# ]
 	# send_sms_data = frappe.get_all("Send SMS",filters=filters,fields=["name"])
 	# print(send_sms_data)
+	
+	frappe.enqueue(enqueue_send_message, send_sms_data=send_sms_data,queue="long")
+
+def enqueue_send_message(send_sms_data):
 	for row in send_sms_data:
 		send_sms_doc = frappe.get_doc("Send SMS",row.name)
 		send_message(send_sms_doc)

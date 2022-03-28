@@ -88,22 +88,24 @@ def get_columns(filters):
 def get_data(filters):
 	data = []
 	if not filters.get("employee"):
+		users = []
 		if "WMS Admin" in frappe.get_roles():
 			users = frappe.get_all("User",filters={"enabled":1},fields=["name"])
 		else:
 			users = get_users()
-		for user in users:
-			if not user.name in ["Administrator"]:
-				frappe.errprint(user.get('name'))
-				issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
-										filters.get("from_date"), filters.get("to_date")]],["assign_to","=",user.get('name')]], fields=["*"])
-				row = dict(
-					date_from = filters.get("from_date"),
-					date_to = filters.get("to_date"),
-					employee_name = frappe.db.get_value("User",user.name,"full_name")
-				)
-				get_filters_data(row,issues)
-				data.append(row)
+		if users:
+			for user in users:
+				if not user.name in ["Administrator"]:
+					frappe.errprint(user.get('name'))
+					issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
+											filters.get("from_date"), filters.get("to_date")]],["assign_to","=",user.get('name')]], fields=["*"])
+					row = dict(
+						date_from = filters.get("from_date"),
+						date_to = filters.get("to_date"),
+						employee_name = frappe.db.get_value("User",user.name,"full_name")
+					)
+					get_filters_data(row,issues)
+					data.append(row)
 	else:
 		issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
 								filters.get("from_date"), filters.get("to_date")]],["assign_to","=",filters.get("employee")]], fields=["*"])
@@ -124,7 +126,8 @@ def get_users():
 	reporting_employees = frappe.get_all("Employee",filters={"reports_to":emp_id},fields=["name"])
 	for row in reporting_employees:
 		employees.append(row.name)
-	return frappe.db.sql("""select user_id as 'name' from `tabEmployee` where name in ({0}) """.format(', '.join(frappe.db.escape(i) for i in employees)),as_dict=1)
+	if len(employees) >= 1:
+		return frappe.db.sql("""select user_id as 'name' from `tabEmployee` where name in ({0}) """.format(', '.join(frappe.db.escape(i) for i in employees)),as_dict=1)
 
 
 def get_filters_data(row,issues):
