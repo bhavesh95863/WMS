@@ -57,6 +57,15 @@ frappe.ui.form.on('WMS Task Rule', {
 	},
 	refresh: function (frm) {
 		frm.trigger('setup_fieldname_select')
+		if ((!frm.doc.__islocal) && (!frappe.user.has_role("System Manager"))){
+			console.log('asd')
+			let meta = frappe.get_meta("WMS Task Rule");
+			meta.fields.forEach(value => {
+				if (!["Section Break", "Column Break"].includes(value.fieldtype)) {
+					frm.set_df_property(value.fieldname,'read_only', 1);
+				}
+			});
+		}
 	},
 	ref_doctype: function (frm) {
 		frm.trigger('setup_fieldname_select')

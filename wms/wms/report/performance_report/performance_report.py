@@ -142,7 +142,12 @@ def get_filters_data(row,issues):
 	if (row["total_task_till_today"] > 0):
 		task_not_complete = row["total_completed_late"] + row["tasks_overdue"] + row["tasks_without_due_date"]
 		tasks_marked_complete_incorrectly = row["tasks_marked_complete_incorrectly"] * 5
-		row["age_work_not_done_on_time"] = -1 * ((task_not_complete + tasks_marked_complete_incorrectly) / row["total_task_till_today"]) * 100
+		row["age_work_not_done_on_time"] = update_percentage(-1 * ((task_not_complete + tasks_marked_complete_incorrectly) / row["total_task_till_today"]) * 100)
 	else:
 		row["age_work_not_done_on_time"] = 0
 
+def update_percentage(value):
+	if flt(value) < flt(-100):
+		return -100
+	else:
+		return value

@@ -95,6 +95,7 @@
   {
    "fieldname": "message_template",
    "fieldtype": "Link",
+   "ignore_user_permissions": 1,
    "label": "Message Template",
    "options": "Message Template",
    "reqd": 1
@@ -167,7 +168,7 @@
    "label": "Conditions"
   }
  ],
- "modified": "2022-03-27 02:19:16.800740",
+ "modified": "2022-03-31 16:48:45.129874",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Message Rule",

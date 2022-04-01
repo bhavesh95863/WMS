@@ -45,7 +45,7 @@
    "label": "Email ID"
   }
  ],
- "modified": "2022-03-20 13:55:08.552493",
+ "modified": "2022-03-31 16:34:24.207681",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Lead",
@@ -65,7 +65,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

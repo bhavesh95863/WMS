@@ -30,7 +30,7 @@ def after_insert_communication(self,method):
                 variable.value = value.get_text()
             doc.submit()
         except Exception as e:
-            frappe.log_error(title='Group Message Send Failed For {0}'.format(self.name), message=frappe.get_traceback())
+            frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
 
 def get_variable_value(s):
     substring = []

@@ -74,7 +74,7 @@
    "label": "Document"
   }
  ],
- "modified": "2021-12-26 16:52:18.834866",
+ "modified": "2022-03-31 16:50:40.981908",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Whatsapp Message Log",
@@ -91,6 +91,15 @@
    "role": "System Manager",
    "share": 1,
    "write": 1
+  },
+  {
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "WMS Admin",
+   "share": 1
   }
  ],
  "sort_field": "modified",
