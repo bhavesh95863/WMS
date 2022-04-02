@@ -4,7 +4,7 @@
 from __future__ import unicode_literals
 import frappe
 from frappe import _
-from frappe.utils import flt
+from frappe.utils import flt,getdate
 
 def execute(filters=None):
 	columns, data = [], []
@@ -79,6 +79,13 @@ def get_columns(filters):
 			"fieldname": "age_work_not_done_on_time",
 			"width": 200,
 			"precision": 2
+		},
+		{
+			"label": _("salary increment %age"),
+			"fieldtype": "Float",
+			"fieldname": "salary_increment_age",
+			"width": 200,
+			"precision": 2
 		}
 	]
 
@@ -104,7 +111,7 @@ def get_data(filters):
 						date_to = filters.get("to_date"),
 						employee_name = frappe.db.get_value("User",user.name,"full_name")
 					)
-					get_filters_data(row,issues)
+					get_filters_data(row,issues,filters)
 					data.append(row)
 	else:
 		issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
@@ -114,7 +121,7 @@ def get_data(filters):
 			date_to = filters.get("to_date"),
 			employee_name = frappe.db.get_value("User",filters.get("employee"),"full_name")
 		)
-		get_filters_data(row,issues)
+		get_filters_data(row,issues,filters)
 		data.append(row)
 	return data
 
@@ -130,7 +137,7 @@ def get_users():
 		return frappe.db.sql("""select user_id as 'name' from `tabEmployee` where name in ({0}) """.format(', '.join(frappe.db.escape(i) for i in employees)),as_dict=1)
 
 
-def get_filters_data(row,issues):
+def get_filters_data(row,issues,filters):
 	row["total_task_till_today"] = len(issues)
 	row["total_completed_on_time"] = len(list(filter(lambda x: x['status'] == "Ontime", issues)))
 	row["total_completed_late"] = len(list(filter(lambda x: x['status'] == "Late", issues)))
@@ -145,6 +152,16 @@ def get_filters_data(row,issues):
 		row["age_work_not_done_on_time"] = update_percentage(-1 * ((task_not_complete + tasks_marked_complete_incorrectly) / row["total_task_till_today"]) * 100)
 	else:
 		row["age_work_not_done_on_time"] = 0
+
+	row["salary_increment_age"] = get_salary_increment(row["age_work_not_done_on_time"],filters)
+
+def get_salary_increment(age_work_not_done_on_time,filters):
+	year = getdate(filters.get("from_date")).year
+	salary_increment_cap = frappe.db.get_value("Increment Capping",{"year":year,"docstatus":1},"increment_capping")
+	if not salary_increment_cap:
+		return 0
+	else:
+		return salary_increment_cap * (1 + (age_work_not_done_on_time / 100))
 
 def update_percentage(value):
 	if flt(value) < flt(-100):

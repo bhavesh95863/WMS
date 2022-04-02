@@ -59,6 +59,12 @@ def get_data():
 					"doctype": "WMS Task",
 					"is_query_report": True
 				},
+                {
+                    "type": "doctype",
+                    "name": "Whatsapp Message Log",
+                    "label": _("Whatsapp Message Log")
+                }  
+
             ]
         }
     ]

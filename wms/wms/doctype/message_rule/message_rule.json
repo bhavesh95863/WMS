@@ -168,7 +168,7 @@
    "label": "Conditions"
   }
  ],
- "modified": "2022-03-31 16:48:45.129874",
+ "modified": "2022-04-02 12:17:59.290735",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Message Rule",
@@ -188,7 +188,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

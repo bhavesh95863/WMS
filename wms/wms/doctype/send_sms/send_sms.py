@@ -98,11 +98,14 @@ def send_message_sales_order(doc):
 
 def send_message_lead(doc):
 	lead_details = frappe.db.sql(
-		"""select name,mobile_no as 'mobile_no' from `tabLead` where mobile_no is not null""",as_dict=1)
+		"""select name,mobile_no as 'mobile_no',type_of_contract from `tabLead` where mobile_no is not null""",as_dict=1)
 	for row in lead_details:
 		message_template_data = get_template_data(doc)
 		if row.get('mobile_no'):
-			send_whatsapp_message(doc.message_format, row.get('mobile_no'), message_template_data, doc.name)
+			foreign = False
+			if row.type_of_contract == "Foreign":
+				foreign = True
+			send_whatsapp_message(doc.message_format, row.get('mobile_no'), message_template_data, doc.name,foreign=foreign)
 
 def send_message_group(doc):
 	group_doc = frappe.get_doc("Group",doc.group)

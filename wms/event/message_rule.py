@@ -80,7 +80,10 @@ def send_message_using_template(self,rule):
                 if so_doc.get(mobile):
                     send_whatsapp_message(template_doc.template_name,so_doc.get(mobile),json.dumps(data),self.name)
         else:
-            send_whatsapp_message(template_doc.template_name,self.get(rule.mobile_no_field),json.dumps(data),self.name)
+            foreign = False
+            if self.doctype == "WMS Lead" and self.type_of_contract == "Foreign":
+                foreign = True
+            send_whatsapp_message(template_doc.template_name,self.get(rule.mobile_no_field),json.dumps(data),self.name,foreign=foreign)
 
     if rule.sms:
         data = {}
@@ -106,8 +109,9 @@ def send_sms_message(message,receiver_list):
     from frappe.core.doctype.sms_settings.sms_settings import send_sms
     send_sms(receiver_list,message)
 
-def send_whatsapp_message(template,mobile,data,document):
-    mobile = '91' + cstr(mobile)
+def send_whatsapp_message(template,mobile,data,document,foreign=False):
+    if not foreign:
+        mobile = '91' + cstr(mobile)
     whatsapp_setting = frappe.get_doc("WhatsApp Setting","WhatsApp Setting")
     base_url = whatsapp_setting.get('url') + "/api/v1/sendTemplateMessage/" + mobile + "?whatsappNumber=" + whatsapp_setting.get('whatsapp_number')
     payload = json.dumps({

@@ -37,7 +37,7 @@
    "fieldname": "type_of_contract",
    "fieldtype": "Select",
    "label": "Type of Contract",
-   "options": "\nRailway\nPrivate\nPersonal"
+   "options": "\nRailway\nPrivate\nPersonal\nForeign"
   },
   {
    "fieldname": "email_id",
@@ -45,7 +45,7 @@
    "label": "Email ID"
   }
  ],
- "modified": "2022-03-31 16:34:24.207681",
+ "modified": "2022-04-02 12:21:19.690794",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Lead",
