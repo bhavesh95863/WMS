@@ -89,6 +89,10 @@ doc_events = {
     },
     "Communication":{
         "after_insert":"wms.event.communication.after_insert_communication"
+    },
+    "Order Execution Ledger ATW":{
+         "on_change": ["wms.event.project.on_update_order_execution"],
+         "before_insert": ["wms.event.project.on_update_order_execution"]
     }
 }
 
@@ -146,3 +150,20 @@ scheduler_events = {
 # override_doctype_dashboards = {
 # 	"Task": "wms.task.get_dashboard_data"
 # }
+fixtures = [
+    {
+        "doctype": "DocType",
+        "filters": [
+            [
+                "name",
+                "in",
+                [
+                    "Order Execution Ledger ATW",
+                    "Order Execution Ledger ATW Child",
+                    "Total Order Execution",
+                    "Order Execution ATW Ledger ITEM Child"
+                ]
+            ],
+        ]
+    }
+]
