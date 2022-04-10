@@ -158,10 +158,10 @@ fixtures = [
                 "name",
                 "in",
                 [
-                    "Order Execution Ledger ATW",
-                    "Order Execution Ledger ATW Child",
+                    "Order Execution ATW Ledger ITEM Child",
                     "Total Order Execution",
-                    "Order Execution ATW Ledger ITEM Child"
+                    "Order Execution Ledger ATW Child",
+                    "Order Execution Ledger ATW"
                 ]
             ],
         ]
