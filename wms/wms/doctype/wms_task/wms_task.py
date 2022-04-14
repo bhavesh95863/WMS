@@ -4,7 +4,7 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe.utils import getdate, today, now
+from frappe.utils import getdate, today, now, add_days
 from frappe.model.document import Document
 
 
@@ -24,13 +24,28 @@ class WMSTask(Document):
 			self.status = "Not Yet Due"
 		elif self.due_date and getdate(self.due_date) < getdate(today()):
 			self.status = "Overdue"
+		if not self.assign_by:
+			self.assign_by = frappe.session.user
 		self.validate_date()
+
 
  
 	def validate_date(self):
 		if self.get('__islocal'):
 			if getdate(self.date_of_issue) < getdate(today()):
 				frappe.throw("Date Of Issue Must Be Today or Greater Than Today")
+
+			def validate_holiday_leave(self):
+				# frappe.errprint('call')
+				if get_leave(self.assign_to,self.due_date):
+					frappe.msgprint(f"{self.assign_to} Applied For Leave On {self.due_date}.So Due Date Adjust As per next working days ")
+					self.due_date = add_days(self.due_date,1)
+					return validate_holiday_leave(self)
+				if get_holidays(self.assign_to,self.due_date):
+					frappe.msgprint(f"Public Holiday On {self.due_date}. So Due Date Adjust As per next working days ")
+					self.due_date = add_days(self.due_date,1)
+					return validate_holiday_leave(self)
+			validate_holiday_leave(self)
 
 
 	def mark_complete(self):
@@ -81,9 +96,51 @@ def extend_date_request(task_id,date,reason=None):
 	task_doc.save()
 
 def get_permission_query_conditions(user):
+
 	if not user: user = frappe.session.user
 	if user == "Administrator":
 		return
 	return """(`tabWMS Task`.`assign_by`=%(user)s or `tabWMS Task`.`assign_to`=%(user)s)""" % {
 			"user": frappe.db.escape(user),
 		}
+
+@frappe.whitelist()
+def get_users(doctype, txt, searchfield, start, page_len, filters):
+	employees = []
+	emp_id = frappe.db.get_value("Employee",{"user_id":frappe.session.user},"name")
+	if emp_id:
+		employees.append(emp_id)
+	reporting_employees = frappe.get_all("Employee",filters={"reports_to":emp_id},fields=["name"])
+	for row in reporting_employees:
+		employees.append(row.name)
+	if len(employees) >= 1:
+		return frappe.db.sql("""select user_id as 'name' from `tabEmployee` where name in ({0}) """.format(', '.join(frappe.db.escape(i) for i in employees)),as_list=1)
+
+
+def get_leave(user,due_date):
+	# frappe.errprint('leave')
+	employee = frappe.db.get_value("Employee",{"user_id":user},"name")
+	filters = [
+		["employee","=",employee],
+		["to_date","=",due_date],
+		["docstatus","=",1]
+	]
+	leave_application = frappe.db.sql("""select name from `tabLeave Application` where %s between from_date and to_date and employee=%s and docstatus=1""",(due_date,employee),as_dict=1)
+	# leave_application = frappe.db.get_all("Leave Application",filters=filters,fields=["*"])
+	if len(leave_application) >= 1:
+		return True
+	else:
+		return False
+
+def get_holidays(user,due_date):
+	# frappe.errprint('holiday')
+	employee = frappe.db.get_value("Employee",{"user_id":user},"name")
+	filters = [
+		["Holiday","holiday_date","=",due_date],
+	]
+	holidays = frappe.db.get_all("Holiday List",filters=filters,fields=["name"])
+	if len(holidays) >= 1:
+		return True
+	else:
+		return False
+

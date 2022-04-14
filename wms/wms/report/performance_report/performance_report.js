@@ -24,7 +24,19 @@ frappe.query_reports["Performance Report"] = {
 			"fieldname":"employee",
 			"label": __("Employee"),
 			"fieldtype": "Link",
-			"options": "User"
+			"options": "User",
+			"get_query": function() {
+				var admin_role = false;
+				if (frappe.user.has_role("WMS Admin") || frappe.user.has_role("System Manager")){
+					admin_role = true
+				}
+				if(!admin_role) {
+					return {
+						query: "wms.wms.doctype.wms_task.wms_task.get_users",
+						filters: {}
+						}
+				}
+			},
 		}
 	]
 };
