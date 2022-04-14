@@ -171,7 +171,7 @@ def create_task(task, task_type, context=None):
 		details= frappe.render_template(task.get('task_details'),context) if context else task.get('task_details'),
 		task_title=task.get('task_title'),
 		assign_to=task.get('assign_to'),
-		assign_by=frappe.session.user
+		assign_by=task.get('assign_from')
 	)).insert(ignore_permissions=True)
 
 def get_context(doc):
