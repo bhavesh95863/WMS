@@ -64,7 +64,8 @@ def on_update_order_execution(self,method):
         for row in items:
             self.append("totals",dict(
                 item = row.get('item'),
-                balance_to_weld = item.get('qty')
+                balance_to_weld = item.get('qty'),
+                sales_order = self.sales_order
             ))
     for total_row in self.totals:
         total_weld = 0
