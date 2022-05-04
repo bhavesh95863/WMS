@@ -148,7 +148,10 @@ def send_message_group(doc):
 						send_text_message(doc,order_doc.mobile3)
 			if row.group_type == "WMS Lead":
 				if group_doc.get('whatsapp'):
-					send_whatsapp_message(doc.message_format,row.mobile, message_template_data, doc.name)
+					foreign = False
+					if frappe.db.get_value("WMS Lead",row.name_group,"type_of_contract") == "Foreign":
+						foreign = True
+					send_whatsapp_message(doc.message_format,row.mobile, message_template_data, doc.name,foreign)
 				if group_doc.get('sms'):
 					send_text_message(doc,row.mobile)
 

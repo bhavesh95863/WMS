@@ -82,7 +82,8 @@
    "fieldname": "assign_to",
    "fieldtype": "Link",
    "label": "Assign To",
-   "options": "User"
+   "options": "User",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_10",
@@ -92,7 +93,8 @@
    "fieldname": "assign_by",
    "fieldtype": "Link",
    "label": "Assign From",
-   "options": "User"
+   "options": "User",
+   "reqd": 1
   },
   {
    "fieldname": "task_title",
@@ -162,7 +164,7 @@
    "read_only": 1
   }
  ],
- "modified": "2022-04-14 17:39:27.171030",
+ "modified": "2022-04-21 12:19:58.575689",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task",
@@ -193,7 +195,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,
@@ -205,7 +206,6 @@
   },
   {
    "create": 1,
-   "delete": 1,
    "email": 1,
    "export": 1,
    "print": 1,

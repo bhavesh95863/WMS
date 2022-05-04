@@ -111,6 +111,7 @@ scheduler_events = {
 	},
     "daily": [
         "wms.event.task.create_task_for_recurring",
+        "wms.event.task.trigger_daily_alerts",
         "wms.event.task.update_task_status"
     ]
 }

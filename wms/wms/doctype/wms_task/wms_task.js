@@ -46,7 +46,7 @@ frappe.ui.form.on('WMS Task', {
 		})
 	},
 	refresh: function(frm) {
-		if(frm.doc.status == "Not Yet Due" || frm.doc.status == "Due Today" || frm.doc.status == "Without Due Date" || frm.doc.status == "Overdue") {
+		if((frm.doc.status == "Not Yet Due" || frm.doc.status == "Due Today" || frm.doc.status == "Without Due Date" || frm.doc.status == "Overdue") && frm.doc.assign_to == frappe.session.user) {
 			frm.add_custom_button(__('Mark Complete'), function() {
 				frm.call({
 					doc:frm.doc,
@@ -57,7 +57,7 @@ frappe.ui.form.on('WMS Task', {
 					}
 				})
 			});
-			if(frm.doc.status != "Overdue") {
+			if(frm.doc.status != "Overdue" && frm.doc.assign_to == frappe.session.user) {
 				frm.add_custom_button(__('Date Extend'), function() {
 					const dialog = new frappe.ui.Dialog({
 						title: __("Select Difference Account"),
