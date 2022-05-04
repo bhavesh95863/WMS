@@ -73,7 +73,7 @@ def create_task_for_recurring():
 	try:
 		templates = []
 		tasks = frappe.get_all("WMS Task Rule", filters={
-							"recurring": 1}, fields=["*"])
+							"recurring": 1,"enabled":1}, fields=["*"])
 		for row in tasks:
 			if row.frequency == "Daily":
 				templates.append(row)
