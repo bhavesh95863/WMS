@@ -16,6 +16,8 @@ class MessageRule(Document):
 			self.set_sales_order_field_name()
 		if self.rule_based_on == "Other":
 			self.validate_mobile_no_field()
+		if self.rule_based_on == "Group":
+			self.validate_group_field()
 		self.set_variable()
 		if self.conditions:
 			self.validate_condition()
@@ -35,6 +37,10 @@ class MessageRule(Document):
 	def validate_mobile_no_field(self):
 		if not self.mobile_no_field:
 			frappe.throw("Select Mobile No Field Name.")
+
+	def validate_group_field(self):
+		if not self.group_id:
+			frappe.throw("Select Group No Field Name.")
 
 	def set_sales_order_field_name(self):
 		meta = frappe.get_meta(self.ref_doctype)

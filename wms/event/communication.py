@@ -1,6 +1,8 @@
 from shutil import ExecError
 import frappe
 from bs4 import BeautifulSoup
+import html2text
+
 
 
 @frappe.whitelist()
@@ -26,14 +28,15 @@ def after_insert_communication(self,method):
             if len(doc.message_variable) >= 1 and not len(variables) >= 1:
                 return
             for index,variable in enumerate(doc.message_variable):
-                value = BeautifulSoup(variables[index])
-                variable.value = value.get_text()
+                # value = BeautifulSoup(variables[index])
+                variable.value = html2text.html2text(variables[index])
             doc.submit()
         except Exception as e:
             frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
 
 def get_variable_value(s):
     substring = []
+    s = html2text.html2text(s)
     def get_substring(s):
         start_string = '#$#'
         end_string = '#$#'

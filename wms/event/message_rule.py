@@ -79,6 +79,20 @@ def send_message_using_template(self,rule):
             for mobile in so_fields:
                 if so_doc.get(mobile):
                     send_whatsapp_message(template_doc.template_name,so_doc.get(mobile),json.dumps(data),self.name)
+        elif rule.rule_based_on == "Group":
+            group_doc = frappe.get_doc("Group",rule.get('group_id'))
+            if group_doc.get('group_type') == "WMS Lead":
+                for row in group_doc.table_9:
+                    foreign = False
+                    if frappe.db.get_value("WMS Lead",row.get('link'),"type_of_contract") == "Foreign":
+                        foreign = True
+                    if  row.get('enable'):
+                        send_whatsapp_message(template_doc.template_name,row.get('mobile'),json.dumps(data),self.name,foreign=foreign)
+            else:
+                for row in group_doc.table_9:
+                    if  row.get('enable'):
+                        send_whatsapp_message(template_doc.template_name,row.get('mobile'),json.dumps(data),self.name)
+
         else:
             foreign = False
             if self.doctype == "WMS Lead" and self.type_of_contract == "Foreign":
@@ -100,6 +114,11 @@ def send_message_using_template(self,rule):
             for mobile in so_fields:
                 if so_doc.get(mobile):
                     receiver_list.append(so_doc.get(mobile))
+        elif rule.rule_based_on == "Group":
+            group_doc = frappe.get_doc("Group",rule.get('group_id'))
+            for row in group_doc.table_9:
+                if row.get('mobile') and row.get('enable'):
+                    receiver_list.append(row.get('mobile'))
         else:
             receiver_list.append(self.get(rule.mobile_no_field))
         send_sms_message(message,receiver_list)

@@ -21,6 +21,7 @@
   "ref_doctype",
   "sales_order_field",
   "mobile_no_field",
+  "group_id",
   "column_break_4",
   "based_on",
   "fields",
@@ -140,7 +141,7 @@
    "fieldname": "rule_based_on",
    "fieldtype": "Select",
    "label": "Rule Based On",
-   "options": "Sales Order\nOther"
+   "options": "Sales Order\nOther\nGroup"
   },
   {
    "depends_on": "eval:doc.rule_based_on == \"Other\"",
@@ -166,9 +167,16 @@
    "fieldname": "conditions",
    "fieldtype": "Code",
    "label": "Conditions"
+  },
+  {
+   "depends_on": "eval:doc.rule_based_on == \"Group\"",
+   "fieldname": "group_id",
+   "fieldtype": "Link",
+   "label": "Group",
+   "options": "Group"
   }
  ],
- "modified": "2022-04-02 12:17:59.290735",
+ "modified": "2022-05-05 13:23:18.152581",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Message Rule",
