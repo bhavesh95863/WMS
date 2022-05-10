@@ -71,5 +71,9 @@ frappe.ui.form.on('Message Rule', {
 	},
 	ref_doctype: function (frm) {
 		frm.trigger('setup_fieldname_select')
+	},
+	message_template: function(frm,cdt,cdn) {
+		frappe.model.set_value(cdt,cdn,"template_variables","")
+		frm.clear_table("template_variable")
 	}
 });

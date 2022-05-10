@@ -6,6 +6,9 @@ from frappe.utils import today, getdate, cint, now, add_days, parse_val, cstr,no
 import requests
 from frappe.utils.safe_exec import get_safe_globals
 from frappe import _
+from urllib.parse import urlencode
+
+
 
 def send_message_for_event(doc, method):
     try:

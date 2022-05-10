@@ -2,6 +2,7 @@ from shutil import ExecError
 import frappe
 from bs4 import BeautifulSoup
 import html2text
+from urllib.parse import urlencode
 
 
 
@@ -12,12 +13,10 @@ def after_insert_communication(self,method):
             subject_split = self.subject.split(' ')
             group = subject_split[1]
             message_template = subject_split[2][1:]
-            variables = get_variable_value(self.content)
-            frappe.errprint(variables)
+            variables = get_variable_value(self.text_content)
             for index,el in enumerate(variables):
                 if el == '':
                     variables.pop(index)
-            frappe.errprint(variables)
             doc = frappe.new_doc("Send SMS")
             doc.message_send_to = "Group"
             doc.when_to_send = "Now"
@@ -29,14 +28,14 @@ def after_insert_communication(self,method):
                 return
             for index,variable in enumerate(doc.message_variable):
                 # value = BeautifulSoup(variables[index])
-                variable.value = html2text.html2text(variables[index])
+                variable.value = str(variables[index]).replace('\r\n','; ')
             doc.submit()
         except Exception as e:
             frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
 
 def get_variable_value(s):
     substring = []
-    s = html2text.html2text(s)
+    # s = html2text.html2text(s)
     def get_substring(s):
         start_string = '#$#'
         end_string = '#$#'
@@ -50,6 +49,13 @@ def get_variable_value(s):
             get_substring(s[end_index:])
     get_substring(s)
     return substring
+
+@frappe.whitelist()
+def communication_test(communication):
+    comm_doc = frappe.get_doc("Communication",communication)
+    frappe.msgprint(comm_doc.content)
+    return comm_doc.content
+
 
 
         

@@ -70,7 +70,7 @@ class MessageRule(Document):
 				self.template_variables += ","
 			variable = variable.replace('{','')
 			variable = variable.replace('}','')
-			if not frappe.db.exists("Template Variable",{"template_variable": variable,"parenttype":"Message Rule","ref_doctype":self.ref_doctype}):
+			if not frappe.db.exists("Template Variable",{"template_variable": variable,"parenttype":"Message Rule","ref_doctype":self.ref_doctype,"parent":self.name}):
 				self.template_variables += f"{variable}"
 				self.append("template_variable",dict(
 					template_variable = variable,
