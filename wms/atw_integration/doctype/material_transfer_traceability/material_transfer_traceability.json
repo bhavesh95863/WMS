@@ -1,0 +1,152 @@
+{
+ "autoname": "MTT.#####",
+ "creation": "2022-05-30 17:59:18.534734",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "batch_no",
+  "column_break_2",
+  "item",
+  "section_break_4",
+  "source_warehouse",
+  "target_warehouse",
+  "column_break_7",
+  "date_of_transfer",
+  "execution_item",
+  "dispatch_sales_order",
+  "amended_from",
+  "section_break_12",
+  "populate_data",
+  "check_all",
+  "uncheck_all",
+  "section_break_16",
+  "details"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch No",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "batch_no.item",
+   "fieldname": "item",
+   "fieldtype": "Read Only",
+   "label": "Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "source_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "target_warehouse",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Target Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "column_break_7",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_transfer",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Transfer",
+   "reqd": 1
+  },
+  {
+   "fieldname": "execution_item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Execution Item",
+   "options": "Item",
+   "reqd": 1
+  },
+  {
+   "fieldname": "dispatch_sales_order",
+   "fieldtype": "Link",
+   "label": "Dispatch Sales Order",
+   "options": "Sales Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Material Transfer Traceability",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "populate_data",
+   "fieldtype": "Button",
+   "label": "Populate Data"
+  },
+  {
+   "fieldname": "check_all",
+   "fieldtype": "Button",
+   "label": "Check All"
+  },
+  {
+   "fieldname": "uncheck_all",
+   "fieldtype": "Button",
+   "label": "Uncheck All"
+  },
+  {
+   "fieldname": "section_break_16",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "Material Transfer Traceability Details",
+   "options": "Material Transfer Traceability Details"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2022-05-30 18:12:45.328557",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Material Transfer Traceability",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

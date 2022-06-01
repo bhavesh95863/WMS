@@ -1,0 +1,43 @@
+{
+ "creation": "2022-05-30 18:35:55.905867",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "select",
+  "weld_no",
+  "date_of_welding"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "select",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Select"
+  },
+  {
+   "fieldname": "weld_no",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Weld No"
+  },
+  {
+   "fieldname": "date_of_welding",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Welding"
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-05-30 18:35:55.905867",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Debtors Entry Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

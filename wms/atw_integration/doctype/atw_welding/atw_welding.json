@@ -1,0 +1,166 @@
+{
+ "creation": "2022-06-01 17:11:42.004558",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "actual_welder",
+  "certificate_welder",
+  "date_of_welding",
+  "pwi",
+  "aenxen",
+  "kmtp",
+  "lhrh",
+  "portion_slip_photo",
+  "section_break_9",
+  "tolerance_1_mtr_vertical",
+  "tolerance_10cm_vertical",
+  "column_break_12",
+  "tolerance_2_mtr_horizontal",
+  "tolerance_10cm_horizontal",
+  "section_break_15",
+  "photo_of_weld",
+  "column_break_17",
+  "location_of_weld",
+  "section_break_19",
+  "batch_no",
+  "column_break_21",
+  "portion"
+ ],
+ "fields": [
+  {
+   "fieldname": "actual_welder",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Actual Welder",
+   "options": "Employee",
+   "reqd": 1
+  },
+  {
+   "fieldname": "certificate_welder",
+   "fieldtype": "Select",
+   "label": "Certificate Welder",
+   "options": "Certificate Welder 1\nCertificate Welder 2\nCertificate Welder 3"
+  },
+  {
+   "fieldname": "date_of_welding",
+   "fieldtype": "Date",
+   "label": "Date of Welding"
+  },
+  {
+   "fieldname": "pwi",
+   "fieldtype": "Select",
+   "label": "PWI",
+   "options": "PWI1\nPWI2\nPWI3"
+  },
+  {
+   "fieldname": "aenxen",
+   "fieldtype": "Select",
+   "label": "AEN/XEN",
+   "options": "AEN1\nAEN2\nXEN1\nXEN2"
+  },
+  {
+   "fieldname": "kmtp",
+   "fieldtype": "Data",
+   "label": "KM/TP"
+  },
+  {
+   "fieldname": "lhrh",
+   "fieldtype": "Select",
+   "label": "LH/RH",
+   "options": "LH\nRH"
+  },
+  {
+   "fieldname": "portion_slip_photo",
+   "fieldtype": "Small Text",
+   "label": "Portion Slip Photo"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "tolerance_1_mtr_vertical",
+   "fieldtype": "Data",
+   "label": "Tolerance 1 Mtr Vertical"
+  },
+  {
+   "fieldname": "tolerance_10cm_vertical",
+   "fieldtype": "Data",
+   "label": "Tolerance 10cm Vertical"
+  },
+  {
+   "fieldname": "column_break_12",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "tolerance_2_mtr_horizontal",
+   "fieldtype": "Data",
+   "label": "Tolerance 2 Mtr Horizontal"
+  },
+  {
+   "fieldname": "tolerance_10cm_horizontal",
+   "fieldtype": "Data",
+   "label": "Tolerance 10cm Horizontal"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "photo_of_weld",
+   "fieldtype": "Small Text",
+   "label": "Photo of Weld"
+  },
+  {
+   "fieldname": "column_break_17",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "location_of_weld",
+   "fieldtype": "Small Text",
+   "label": "Location of Weld"
+  },
+  {
+   "fieldname": "section_break_19",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch No",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "column_break_21",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "portion",
+   "fieldtype": "Read Only",
+   "label": "Portion"
+  }
+ ],
+ "modified": "2022-06-01 17:11:42.004558",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "ATW Welding",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

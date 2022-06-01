@@ -4,12 +4,13 @@
 
 from __future__ import unicode_literals
 import frappe
-from frappe.utils import getdate, today, now, add_days
+from frappe.utils import getdate, today, now, add_days,nowtime,get_time
 from frappe.model.document import Document
 
 
 class WMSTask(Document):
 	def validate(self):
+		self.validate_date()
 		if self.date_extend_request:
 			self.status = "Extend Required"
 		elif not self.due_date:
@@ -26,7 +27,6 @@ class WMSTask(Document):
 			self.status = "Overdue"
 		if not self.assign_by:
 			self.assign_by = frappe.session.user
-		self.validate_date()
 
 
  
@@ -34,7 +34,8 @@ class WMSTask(Document):
 		if self.get('__islocal'):
 			if getdate(self.date_of_issue) < getdate(today()):
 				frappe.throw("Date Of Issue Must Be Today or Greater Than Today")
-
+			if get_time(nowtime()) > get_time("18:00:00"):
+				self.due_date = add_days(self.due_date,1)
 			def validate_holiday_leave(self):
 				# frappe.errprint('call')
 				if get_leave(self.assign_to,self.due_date):
@@ -63,6 +64,8 @@ class WMSTask(Document):
 		self.save()
 
 	def approve_extend_request(self):
+		if frappe.session.user == self.assign_to:
+			frappe.throw("Self Extend Request Can not Approve/Reject")
 		self.append("task_extend_details",dict(
 			due_date_before_extend = self.due_date,
 			extend_date = self.date_extend_request,
@@ -76,6 +79,8 @@ class WMSTask(Document):
 		self.save()
 	
 	def reject_extend_request(self):
+		if frappe.session.user == self.assign_to:
+			frappe.throw("Self Extend Request Can not Approve/Reject")
 		self.append("task_extend_details",dict(
 			due_date_before_extend = self.due_date,
 			extend_date = self.date_extend_request,

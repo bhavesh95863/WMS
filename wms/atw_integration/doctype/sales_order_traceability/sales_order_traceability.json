@@ -1,0 +1,104 @@
+{
+ "autoname": "SOTRAC.#####",
+ "creation": "2022-05-23 20:41:47.138911",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "batch_no",
+  "populate_data",
+  "check_all",
+  "uncheck_all",
+  "column_break_3",
+  "item",
+  "inspection_sales_order",
+  "amended_from",
+  "section_break_9",
+  "details"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch No",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "populate_data",
+   "fieldtype": "Button",
+   "label": "Populate Data"
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "batch_no.item",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item",
+   "read_only": 1
+  },
+  {
+   "fieldname": "inspection_sales_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Inspection Sales Order",
+   "options": "Sales Order",
+   "reqd": 1
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Sales Order Traceability",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "check_all",
+   "fieldtype": "Button",
+   "label": "Check All"
+  },
+  {
+   "fieldname": "uncheck_all",
+   "fieldtype": "Button",
+   "label": "Uncheck All"
+  },
+  {
+   "fieldname": "section_break_9",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "Sales Order Traceability Details",
+   "options": "Sales Order Traceability Details"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2022-05-30 17:55:33.236192",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Sales Order Traceability",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

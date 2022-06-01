@@ -1,0 +1,106 @@
+{
+ "creation": "2022-05-23 20:34:36.320250",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "batch_no",
+  "portion_no_from",
+  "populate_data",
+  "check_all",
+  "uncheck_all",
+  "column_break_4",
+  "item",
+  "portion_no_to",
+  "section_break_7",
+  "details",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "label": "Batch No",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "portion_no_from",
+   "fieldtype": "Data",
+   "label": "Portion No From"
+  },
+  {
+   "fieldname": "populate_data",
+   "fieldtype": "Button",
+   "label": "Populate Data"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "batch_no.item",
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "label": "Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "portion_no_to",
+   "fieldtype": "Data",
+   "label": "Portion No To"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "ATW Manf Traceability",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "section_break_7",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "ATW Manf Traceability Details",
+   "options": "ATW Manf Traceability Details"
+  },
+  {
+   "fieldname": "check_all",
+   "fieldtype": "Button",
+   "label": "Check All"
+  },
+  {
+   "fieldname": "uncheck_all",
+   "fieldtype": "Button",
+   "label": "Uncheck All"
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2022-05-30 17:28:28.050063",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "ATW Manf Traceability",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "submit": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
