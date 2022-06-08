@@ -5,6 +5,7 @@
  "engine": "InnoDB",
  "field_order": [
   "actual_welder",
+  "welder_code",
   "certificate_welder",
   "date_of_welding",
   "pwi",
@@ -16,7 +17,7 @@
   "tolerance_1_mtr_vertical",
   "tolerance_10cm_vertical",
   "column_break_12",
-  "tolerance_2_mtr_horizontal",
+  "tolerance_1_mtr_horizontal",
   "tolerance_10cm_horizontal",
   "section_break_15",
   "photo_of_weld",
@@ -24,8 +25,12 @@
   "location_of_weld",
   "section_break_19",
   "batch_no",
+  "weld_no",
   "column_break_21",
-  "portion"
+  "portion",
+  "auto_gen_id",
+  "section_break_25",
+  "tolerance"
  ],
  "fields": [
   {
@@ -72,7 +77,7 @@
   },
   {
    "fieldname": "portion_slip_photo",
-   "fieldtype": "Small Text",
+   "fieldtype": "Attach",
    "label": "Portion Slip Photo"
   },
   {
@@ -94,11 +99,6 @@
    "fieldtype": "Column Break"
   },
   {
-   "fieldname": "tolerance_2_mtr_horizontal",
-   "fieldtype": "Data",
-   "label": "Tolerance 2 Mtr Horizontal"
-  },
-  {
    "fieldname": "tolerance_10cm_horizontal",
    "fieldtype": "Data",
    "label": "Tolerance 10cm Horizontal"
@@ -109,7 +109,7 @@
   },
   {
    "fieldname": "photo_of_weld",
-   "fieldtype": "Small Text",
+   "fieldtype": "Attach",
    "label": "Photo of Weld"
   },
   {
@@ -139,9 +139,40 @@
    "fieldname": "portion",
    "fieldtype": "Read Only",
    "label": "Portion"
+  },
+  {
+   "fieldname": "weld_no",
+   "fieldtype": "Data",
+   "label": "Weld No"
+  },
+  {
+   "fieldname": "auto_gen_id",
+   "fieldtype": "Data",
+   "label": "Auto Gen Id"
+  },
+  {
+   "fieldname": "section_break_25",
+   "fieldtype": "Section Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "tolerance",
+   "fieldtype": "Check",
+   "label": "Tolerance"
+  },
+  {
+   "fetch_from": "actual_welder.welder_no",
+   "fieldname": "welder_code",
+   "fieldtype": "Data",
+   "label": "Welder Code"
+  },
+  {
+   "fieldname": "tolerance_1_mtr_horizontal",
+   "fieldtype": "Data",
+   "label": "Tolerance 1 Mtr Horizontal"
   }
  ],
- "modified": "2022-06-01 17:11:42.004558",
+ "modified": "2022-06-06 20:57:27.947512",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "ATW Welding",
