@@ -16,11 +16,11 @@ frappe.ui.form.on('WMS Task', {
 		frm.trigger("make_fields_readonly")
 	},
 	make_fields_readonly:function(frm,cdt,cdn) {
-// 		if ((!frm.doc.__islocal) && (!frappe.user.has_role("WMS Admin") || !frappe.user.has_role("System Manager"))){
-		if ((!frm.doc.__islocal) && (!frappe.user.has_role("System Manager"))){
+		if ((!frm.doc.__islocal) && (!frappe.user.has_role("WMS Admin") || !frappe.user.has_role("System Manager"))){
 			let meta = frappe.get_meta("WMS Task");
 			meta.fields.forEach(value => {
 				if (!["Section Break", "Column Break"].includes(value.fieldtype)) {
+					if(frm.doc.status == "Extend Required" && frappe.user.has_role("WMS Admin") && value.fieldname != "date_extend_request")
 					frm.set_df_property(value.fieldname,'read_only', 1);
 				}
 			});
