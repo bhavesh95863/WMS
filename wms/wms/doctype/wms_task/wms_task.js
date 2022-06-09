@@ -20,8 +20,12 @@ frappe.ui.form.on('WMS Task', {
 			let meta = frappe.get_meta("WMS Task");
 			meta.fields.forEach(value => {
 				if (!["Section Break", "Column Break"].includes(value.fieldtype)) {
-					if(frm.doc.status == "Extend Required" && frappe.user.has_role("WMS Admin") && value.fieldname != "date_extend_request")
-					frm.set_df_property(value.fieldname,'read_only', 1);
+					if(frm.doc.status == "Extend Required" && frappe.user.has_role("WMS Admin") && value.fieldname == "date_extend_request"){
+						frm.set_df_property(value.fieldname,'read_only', 0);
+					}else{
+						frm.set_df_property(value.fieldname,'read_only', 1);
+					}
+					
 				}
 			});
 		}
