@@ -1,19 +1,11 @@
 // Copyright (c) 2022, Bhavesh and contributors
 // For license information, please see license.txt
 
-frappe.ui.form.on('Debtors Entry', {
+frappe.ui.form.on('USFD Test Result', {
 	setup: function(frm) {
 		frm.set_query("site_warehouse", function() {
 			return {
-				query: "wms.atw_integration.doctype.debtors_entry.debtors_entry.get_site_warehouse",
-			}
-		});
-		frm.set_query("batch_no", function() {
-			return {
-				query: "wms.atw_integration.doctype.debtors_entry.debtors_entry.get_batch_no",
-				filters:{
-					"target_warehouse": frm.doc.site_warehouse
-				}
+				query: "wms.atw_integration.doctype.usfd_test_result.usfd_test_result.get_site_warehouse",
 			}
 		});
 	},

@@ -25,7 +25,8 @@ def login(usr, pwd):
 		data = dict(
 			api_key = settings.api_key,
 			secret_key = settings.get_password("secret_key"),
-			employee_id = employee_doc.name
+			employee_id = employee_doc.name,
+			welder_code = employee_doc.get('welder_no')
 		)
 		gen_response(200,"logged in successfully",data)
 	except Exception as e:
@@ -38,7 +39,9 @@ def get_batch_list(employee):
 		warehouse = frappe.db.get_value("Warehouse",{"employee":employee},"name")
 		if not warehouse:
 			return gen_response(200, "No any linked warehouse with loggedin user",[])
-		batches = frappe.db.sql("""select distinct batch_no as 'batch_no' from `tabPortion Traceability` where target_warehouse=%s""",warehouse,as_dict=1)
+		batches = frappe.db.sql("""select distinct batch_no as 'batch_no','' as 'portion_length' from `tabPortion Traceability` where target_warehouse=%s""",warehouse,as_dict=1)
+		for batch in batches:
+			batch.portion_length = len(frappe.get_all("Portion Traceability",filters={"batch_no":batch.batch_no},fields=["name"]))
 		return gen_response(200,"Batch List Get Successfully",batches)
 	except Exception as e:
 		frappe.log_error(frappe.get_traceback())
@@ -50,7 +53,7 @@ def get_portion_list(employee,batch_no):
 		warehouse = frappe.db.get_value("Warehouse",{"employee":employee},"name")
 		if not warehouse:
 			return gen_response(200, "No any linked warehouse with loggedin user",[])
-		portions = frappe.db.sql("""select distinct portion_no as 'portion_no',welding as 'welding',welding_tolerance 'tolerance',welding as 'welding_sync',welding_tolerance 'tolerance_tolerance' from `tabPortion Traceability` where target_warehouse=%s and batch_no=%s""",(warehouse,batch_no),as_dict=1)
+		portions = frappe.db.sql("""select distinct batch_no as 'batch_no',portion_no as 'portion_no',welding as 'welding',welding_tolerance 'tolerance',welding as 'welding_sync',welding_tolerance 'tolerance_tolerance' from `tabPortion Traceability` where target_warehouse=%s and batch_no=%s""",(warehouse,batch_no),as_dict=1)
 		return gen_response(200,"Portions List Get Successfully",portions)
 	except Exception as e:
 		frappe.log_error(frappe.get_traceback())
