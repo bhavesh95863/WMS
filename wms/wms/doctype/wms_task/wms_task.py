@@ -27,6 +27,7 @@ class WMSTask(Document):
 		if not self.assign_by:
 			self.assign_by = frappe.session.user
 		self.validate_date()
+		self.validate_assign()
 
 
  
@@ -47,6 +48,9 @@ class WMSTask(Document):
 					return validate_holiday_leave(self)
 			validate_holiday_leave(self)
 
+	def validate_assign(self):
+		if self.assign_by == self.assign_to:
+			frappe.throw("Assign From and Assign To Must Be Different")
 
 	def mark_complete(self):
 		if not self.date_of_completion:

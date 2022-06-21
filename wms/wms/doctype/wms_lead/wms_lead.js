@@ -11,5 +11,10 @@ frappe.ui.form.on('WMS Lead', {
 				}
 			});
 		}
+	},
+	setup: function(frm){
+		frm.set_query("group", function() {
+			return { filters: { 'group_type': 'WMS Lead' } };
+		});
 	}
 });

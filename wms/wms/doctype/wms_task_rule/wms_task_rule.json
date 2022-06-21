@@ -30,7 +30,9 @@
   "column_break_15",
   "ref_doctype",
   "fields",
-  "section_break_23"
+  "section_break_23",
+  "section_break_26",
+  "task_action"
  ],
  "fields": [
   {
@@ -174,9 +176,18 @@
    "fieldname": "enabled",
    "fieldtype": "Check",
    "label": "Enabled"
+  },
+  {
+   "fieldname": "section_break_26",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "task_action",
+   "fieldtype": "Small Text",
+   "label": "Task Action"
   }
  ],
- "modified": "2022-03-31 16:42:21.904500",
+ "modified": "2022-06-21 16:09:57.547156",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task Rule",
