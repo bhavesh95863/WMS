@@ -184,10 +184,10 @@
   {
    "fieldname": "task_action",
    "fieldtype": "Small Text",
-   "label": "Task Action"
+   "label": "Action Taken"
   }
  ],
- "modified": "2022-06-21 16:09:57.547156",
+ "modified": "2022-06-22 01:42:53.207832",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task Rule",
