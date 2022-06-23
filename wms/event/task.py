@@ -185,11 +185,11 @@ def update_task_status():
 	]
 	tasks = frappe.get_all("WMS Task",filters=filters,fields=["name"])
 	for task in tasks:
-		task_doc = frappe.get_doc("WMS Task",task.name)
-		old_status = task_doc.status
-		task_doc.validate()
-		if not task_doc.status == old_status:
-			try:
+		try:
+			task_doc = frappe.get_doc("WMS Task",task.name)
+			old_status = task_doc.status
+			task_doc.validate()
+			if not task_doc.status == old_status:
 				task_doc.save()
-			except Exception as e:
-				frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
+		except Exception as e:
+			frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())

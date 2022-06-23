@@ -174,7 +174,7 @@
   {
    "fieldname": "task_action_template",
    "fieldtype": "Small Text",
-   "label": "Action Taken"
+   "label": "How to check"
   },
   {
    "fieldname": "column_break_26",
@@ -186,7 +186,7 @@
    "label": "Task Action"
   }
  ],
- "modified": "2022-06-22 01:42:42.880876",
+ "modified": "2022-06-23 12:52:17.913387",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task",
