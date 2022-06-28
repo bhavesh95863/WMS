@@ -19,8 +19,8 @@ class MaterialTransferTraceability(Document):
 		filters = [
 			["Portion Traceability","batch_no","=",self.batch_no],
 			["Portion Traceability","manufactured_item","=",self.item],
-			["Portion Traceability","date_of_transfer","is","not set"],
-			["Portion Traceability","inspection_sales_order","is","set"]
+			["Portion Traceability","inspection_sales_order","is","set"],
+			["Portion Traceability","current_warehouse","=",self.source_warehouse]
 			]
 		portion_trace_details = frappe.get_all("Portion Traceability",filters=filters,fields=["portion_no"])
 		for row in portion_trace_details:
@@ -76,9 +76,10 @@ def update_portion_traceability_record(batch_no,portion_no,transfer_date,executi
 			trace_doc.source_warehouse = source_warehouse
 			trace_doc.dispatch_sales_order = sales_order
 			trace_doc.target_warehouse = target_warehouse
+			trace_doc.current_warehouse = target_warehouse
 			trace_doc.execution_item = execution_item
 			trace_doc.save()
 
 @frappe.whitelist()
 def get_batch_no(doctype, txt, searchfield, start, page_len, filters):
-	return frappe.db.sql("""select batch_no as 'name' from `tabPortion Traceability` where date_of_transfer is null""",as_list=1)
+	return frappe.db.sql("""select distinct batch_no as 'name' from `tabPortion Traceability` where date_of_transfer is null""",as_list=1)

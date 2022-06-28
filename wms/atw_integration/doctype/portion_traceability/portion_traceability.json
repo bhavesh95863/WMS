@@ -11,6 +11,8 @@
   "portion_no",
   "column_break_4",
   "manufactured_item",
+  "column_break_6",
+  "current_warehouse",
   "section_break_6",
   "inspection_sales_order",
   "manufacture_transfer_details_section",
@@ -307,9 +309,19 @@
    "fieldname": "welding_tolerance",
    "fieldtype": "Check",
    "label": "Welding Tolerance"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_warehouse",
+   "fieldtype": "Link",
+   "label": "Current Warehouse",
+   "options": "Warehouse"
   }
  ],
- "modified": "2022-06-06 21:00:15.960992",
+ "modified": "2022-06-29 04:33:30.563027",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "Portion Traceability",

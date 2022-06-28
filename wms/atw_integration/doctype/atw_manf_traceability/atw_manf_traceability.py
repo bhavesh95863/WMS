@@ -45,12 +45,13 @@ class ATWManfTraceability(Document):
 	def create_portion_trace_record(self):
 		for row in self.details:
 			if row.select:
-				create_portion_traceability(row.batch_no,row.item,row.portion_no)
+				create_portion_traceability(row.batch_no,row.item,row.portion_no,self.warehouse)
 	
-def create_portion_traceability(batch_no,item,portion_no):
+def create_portion_traceability(batch_no,item,portion_no,warehouse):
 	doc = frappe.new_doc("Portion Traceability")
 	doc.batch_no = batch_no
 	doc.portion_no = portion_no
 	doc.manufactured_item = item
+	doc.current_warehouse = warehouse
 	doc.insert(ignore_permissions = True)
 

@@ -42,7 +42,7 @@ class SalesOrderTraceability(Document):
 
 @frappe.whitelist()
 def get_batch_no(doctype, txt, searchfield, start, page_len, filters):
-	return frappe.db.sql("""select batch_no as 'name' from `tabPortion Traceability` where inspection_sales_order is null""",as_list=1)
+	return frappe.db.sql("""select distinct batch_no as 'name' from `tabPortion Traceability` where inspection_sales_order is null""",as_list=1)
 
 
 def update_portion_traceability_record(batch_no,item,portion_no,sales_order):
