@@ -71,8 +71,8 @@ def send_message_using_template(self,rule):
         data = []
         for field in rule.template_variable:
             data.append({
-                'name': field.get('template_variable'),
-                'value': self.get(field.get('document_variable'))
+                'name': cstr(field.get('template_variable')),
+                'value': cstr(self.get(field.get('document_variable')))
             })
         if rule.rule_based_on == "Sales Order":
             if rule.ref_doctype == "Sales Order":
