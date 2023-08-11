@@ -1,0 +1,47 @@
+{
+ "creation": "2022-12-25 00:16:01.898719",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "result_category",
+  "result1",
+  "result2"
+ ],
+ "fields": [
+  {
+   "fieldname": "result_category",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Result Category",
+   "options": "Portion No\nC%\nSi%\nMn%\nP%\nS%\nCr%\nNi%\nMo%\nAl%\nCu%\nTi%\nNb%\nSn%\nSb%\nBreak Load\nDeflection\nHardness Pm\nHardness HAZ\nHardness WM",
+   "read_only": 1,
+   "reqd": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "result1",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Result1"
+  },
+  {
+   "default": "0",
+   "fieldname": "result2",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Result2"
+  }
+ ],
+ "istable": 1,
+ "modified": "2023-04-13 18:06:04.483850",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Trial Joints External Results",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -14,7 +14,7 @@ frappe.ui.form.on('USFD Test Result', {
 			method:"populate_data",
 			doc: frm.doc,
 			callback:function(r){
-				frm.reload_doc()
+				// frm.reload_doc()
 			}
 		})
 	},
@@ -26,7 +26,7 @@ frappe.ui.form.on('USFD Test Result', {
 			freeze:"Updating..",
 			callback:function(r){
 				frm.refresh_field("details");
-				frm.reload_doc()
+				// frm.reload_doc()
 			}
 		})
 	},
@@ -38,8 +38,32 @@ frappe.ui.form.on('USFD Test Result', {
 			freeze:"Updating..",
 			callback:function(r){
 				frm.refresh_field("details");
-				frm.reload_doc()
+				// frm.reload_doc()
 			}
 		})
 	},
+	check_all_good: function(frm){
+		frm.call({
+			method:"check_all_good",
+			doc: frm.doc,
+			freeze: true,
+			freeze:"Updating..",
+			callback:function(r){
+				frm.refresh_field("details");
+				// frm.reload_doc()
+			}
+		})
+	},
+	check_all_defective: function(frm){
+		frm.call({
+			method:"check_all_defective",
+			doc: frm.doc,
+			freeze: true,
+			freeze:"Updating..",
+			callback:function(r){
+				frm.refresh_field("details");
+				// frm.reload_doc()
+			}
+		})
+	}
 });

@@ -7,7 +7,9 @@
   "billing_warehouse",
   "cc_no",
   "billing_agent",
+  "billing_agent_name",
   "column_break_4",
+  "sales_order",
   "execution_item",
   "date_of_payment_receipt",
   "amended_from",
@@ -40,8 +42,9 @@
   },
   {
    "fieldname": "billing_agent",
-   "fieldtype": "Data",
-   "label": "Billing Agent"
+   "fieldtype": "Link",
+   "label": "Billing Agent",
+   "options": "Employee"
   },
   {
    "fieldname": "date_of_payment_receipt",
@@ -98,10 +101,23 @@
    "fieldname": "test",
    "fieldtype": "Attach Image",
    "label": "Test"
+  },
+  {
+   "fetch_from": "billing_agent.employee_name",
+   "fieldname": "billing_agent_name",
+   "fieldtype": "Read Only",
+   "label": "Billing Agent Name"
+  },
+  {
+   "fetch_from": "billing_warehouse.sales_order",
+   "fieldname": "sales_order",
+   "fieldtype": "Link",
+   "label": "Sales Order",
+   "options": "Sales Order"
   }
  ],
  "is_submittable": 1,
- "modified": "2022-06-11 10:33:30.968459",
+ "modified": "2022-12-12 20:22:42.280087",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "ATW Payment Status",

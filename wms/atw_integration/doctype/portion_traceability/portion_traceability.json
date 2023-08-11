@@ -34,6 +34,7 @@
   "welding",
   "welding_tolerance",
   "column_break_24",
+  "date_of_entry_of_tolerances",
   "portion_slip_photo_link",
   "tolerance_1_mtr_vertical",
   "tolerance_1_mtr_horizontal",
@@ -41,6 +42,7 @@
   "tolerance_10cm_horizontal",
   "photo_of_weld",
   "location_of_weld",
+  "open_location",
   "date_of_entry",
   "debtors_list_entry_section",
   "debtors_entry",
@@ -56,7 +58,8 @@
   "joint_paid_cc_no",
   "column_break_45",
   "billing_agent",
-  "date_of_payment_receipt"
+  "date_of_payment_receipt",
+  "ignore_portion"
  ],
  "fields": [
   {
@@ -158,7 +161,7 @@
   {
    "fieldname": "date_of_welding",
    "fieldtype": "Date",
-   "label": "Date of Welding"
+   "label": "DATE OF ENTRY OF WELD"
   },
   {
    "fieldname": "pwi",
@@ -218,7 +221,8 @@
   {
    "fieldname": "location_of_weld",
    "fieldtype": "Small Text",
-   "label": "Location of weld"
+   "label": "Location of weld",
+   "read_only": 1
   },
   {
    "fieldname": "date_of_entry",
@@ -319,9 +323,25 @@
    "fieldtype": "Link",
    "label": "Current Warehouse",
    "options": "Warehouse"
+  },
+  {
+   "default": "0",
+   "fieldname": "ignore_portion",
+   "fieldtype": "Check",
+   "label": "Ignore Portion"
+  },
+  {
+   "fieldname": "date_of_entry_of_tolerances",
+   "fieldtype": "Date",
+   "label": " DATE OF ENTRY OF TOLERANCES "
+  },
+  {
+   "fieldname": "open_location",
+   "fieldtype": "Button",
+   "label": "Location Link"
   }
  ],
- "modified": "2022-06-29 04:33:30.563027",
+ "modified": "2023-04-13 19:17:15.699623",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "Portion Traceability",

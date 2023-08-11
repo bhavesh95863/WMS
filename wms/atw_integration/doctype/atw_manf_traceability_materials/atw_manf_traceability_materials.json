@@ -1,0 +1,36 @@
+{
+ "creation": "2022-12-25 00:01:18.521753",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "raw_material",
+  "batch_no"
+ ],
+ "fields": [
+  {
+   "fieldname": "raw_material",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Raw Material",
+   "options": "Item"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Batch No"
+  }
+ ],
+ "istable": 1,
+ "modified": "2023-04-13 13:34:20.258718",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "ATW Manf Traceability Materials",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

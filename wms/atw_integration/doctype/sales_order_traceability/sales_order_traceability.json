@@ -6,12 +6,16 @@
  "engine": "InnoDB",
  "field_order": [
   "batch_no",
+  "portion_no_from",
+  "portion_no_to",
   "populate_data",
   "check_all",
   "uncheck_all",
   "column_break_3",
   "item",
   "inspection_sales_order",
+  "customer",
+  "customer_name",
   "amended_from",
   "section_break_9",
   "details"
@@ -21,7 +25,8 @@
    "fieldname": "batch_no",
    "fieldtype": "Link",
    "label": "Batch No",
-   "options": "Batch"
+   "options": "Batch",
+   "reqd": 1
   },
   {
    "fieldname": "populate_data",
@@ -76,10 +81,37 @@
    "fieldtype": "Table",
    "label": "Sales Order Traceability Details",
    "options": "Sales Order Traceability Details"
+  },
+  {
+   "fetch_from": "inspection_sales_order.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer"
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Read Only",
+   "label": "Customer Name"
+  },
+  {
+   "depends_on": "batch_no",
+   "fieldname": "portion_no_from",
+   "fieldtype": "Select",
+   "label": "Portion No From",
+   "reqd": 1
+  },
+  {
+   "depends_on": "batch_no",
+   "fieldname": "portion_no_to",
+   "fieldtype": "Select",
+   "label": "Portion No To",
+   "reqd": 1
   }
  ],
  "is_submittable": 1,
- "modified": "2022-05-30 17:55:33.236192",
+ "modified": "2023-01-02 11:47:21.094688",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "Sales Order Traceability",

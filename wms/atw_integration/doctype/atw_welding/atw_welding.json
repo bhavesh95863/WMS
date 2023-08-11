@@ -8,12 +8,14 @@
   "welder_code",
   "certificate_welder",
   "date_of_welding",
+  "column_break_5",
   "pwi",
   "aenxen",
   "kmtp",
   "lhrh",
   "portion_slip_photo",
   "section_break_9",
+  "date_of_entry_of_tolerances",
   "tolerance_1_mtr_vertical",
   "tolerance_10cm_vertical",
   "column_break_12",
@@ -30,7 +32,9 @@
   "portion",
   "auto_gen_id",
   "section_break_25",
-  "tolerance"
+  "tolerance",
+  "column_break_28",
+  "ignore_portion"
  ],
  "fields": [
   {
@@ -170,9 +174,28 @@
    "fieldname": "tolerance_1_mtr_horizontal",
    "fieldtype": "Data",
    "label": "Tolerance 1 Mtr Horizontal"
+  },
+  {
+   "fieldname": "column_break_28",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "0",
+   "fieldname": "ignore_portion",
+   "fieldtype": "Check",
+   "label": "Ignore portion"
+  },
+  {
+   "fieldname": "column_break_5",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "date_of_entry_of_tolerances",
+   "fieldtype": "Date",
+   "label": "Date of Entry of Tolerances"
   }
  ],
- "modified": "2022-06-06 20:57:27.947512",
+ "modified": "2023-04-13 19:02:41.267860",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "ATW Welding",

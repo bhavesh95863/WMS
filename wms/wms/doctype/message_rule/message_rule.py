@@ -12,12 +12,12 @@ from frappe import _
 
 class MessageRule(Document):
 	def validate(self):
-		if self.rule_based_on == "Sales Order":
-			self.set_sales_order_field_name()
-		if self.rule_based_on == "Other":
-			self.validate_mobile_no_field()
-		if self.rule_based_on == "Group":
-			self.validate_group_field()
+		# if self.rule_based_on == "Sales Order":
+		# 	self.set_sales_order_field_name()
+		# if self.rule_based_on == "Other":
+		self.validate_mobile_no_field()
+		# if self.rule_based_on == "Group":
+		# 	self.validate_group_field()
 		self.set_variable()
 		if self.conditions:
 			self.validate_condition()

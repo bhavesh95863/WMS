@@ -1,5 +1,5 @@
 {
- "autoname": "MTT.#####",
+ "autoname": "format:{dispatch_sales_order}-{date_of_transfer}-{batch_no}",
  "creation": "2022-05-30 17:59:18.534734",
  "doctype": "DocType",
  "editable_grid": 1,
@@ -8,13 +8,20 @@
   "batch_no",
   "column_break_2",
   "item",
+  "column_break_4",
+  "dispatch_sales_order",
+  "section_break_6",
+  "portion_no_from",
+  "column_break_8",
+  "portion_no_to",
   "section_break_4",
   "source_warehouse",
   "target_warehouse",
   "column_break_7",
   "date_of_transfer",
   "execution_item",
-  "dispatch_sales_order",
+  "customer",
+  "customer_name",
   "amended_from",
   "section_break_12",
   "populate_data",
@@ -28,7 +35,8 @@
    "fieldname": "batch_no",
    "fieldtype": "Link",
    "label": "Batch No",
-   "options": "Batch"
+   "options": "Batch",
+   "reqd": 1
   },
   {
    "fieldname": "column_break_2",
@@ -57,7 +65,7 @@
    "fieldname": "target_warehouse",
    "fieldtype": "Link",
    "in_list_view": 1,
-   "label": "Target Warehouse",
+   "label": "Target Execution Warehouse",
    "options": "Warehouse",
    "reqd": 1
   },
@@ -124,10 +132,46 @@
    "fieldtype": "Table",
    "label": "Material Transfer Traceability Details",
    "options": "Material Transfer Traceability Details"
+  },
+  {
+   "fetch_from": "dispatch_sales_order.customer",
+   "fieldname": "customer",
+   "fieldtype": "Link",
+   "label": "Customer",
+   "options": "Customer",
+   "read_only": 1
+  },
+  {
+   "fetch_from": "customer.customer_name",
+   "fieldname": "customer_name",
+   "fieldtype": "Read Only",
+   "label": "Customer Name"
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "portion_no_from",
+   "fieldtype": "Select",
+   "label": "Portion No From"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "portion_no_to",
+   "fieldtype": "Select",
+   "label": "Portion No To"
   }
  ],
  "is_submittable": 1,
- "modified": "2022-05-30 18:12:45.328557",
+ "modified": "2023-01-03 20:51:40.125388",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "Material Transfer Traceability",
