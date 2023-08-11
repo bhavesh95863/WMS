@@ -1,0 +1,42 @@
+{
+ "creation": "2022-06-09 21:40:53.019428",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "select",
+  "weld_no",
+  "portion"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "select",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Select"
+  },
+  {
+   "fieldname": "weld_no",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Weld No"
+  },
+  {
+   "fieldname": "portion",
+   "fieldtype": "Read Only",
+   "label": "Portion"
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-06-09 21:41:01.750518",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "ATW Payment Status Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,86 @@
+{
+ "creation": "2022-06-09 20:15:01.079929",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "select",
+  "weld_no",
+  "date_of_welding",
+  "km_tp",
+  "lh_rh",
+  "good",
+  "defective",
+  "portion"
+ ],
+ "fields": [
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "select",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Select"
+  },
+  {
+   "columns": 2,
+   "fieldname": "weld_no",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Weld No"
+  },
+  {
+   "columns": 2,
+   "fieldname": "date_of_welding",
+   "fieldtype": "Date",
+   "in_list_view": 1,
+   "label": "Date of Welding"
+  },
+  {
+   "columns": 1,
+   "fieldname": "km_tp",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Km/TP"
+  },
+  {
+   "columns": 1,
+   "fieldname": "lh_rh",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "LH/RH"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "good",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Good"
+  },
+  {
+   "columns": 1,
+   "default": "0",
+   "fieldname": "defective",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Defective"
+  },
+  {
+   "fieldname": "portion",
+   "fieldtype": "Read Only",
+   "label": "Portion"
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-06-09 21:34:12.403147",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "USFD Test Result Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

@@ -1,0 +1,52 @@
+{
+ "creation": "2022-05-23 20:43:30.346868",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "select",
+  "batch_no",
+  "portion_no",
+  "item"
+ ],
+ "fields": [
+  {
+   "default": "0",
+   "fieldname": "select",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Select"
+  },
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Batch No",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "portion_no",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Portion No"
+  },
+  {
+   "fieldname": "item",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Item",
+   "options": "Item"
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-05-23 20:43:30.346868",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Sales Order Traceability Details",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

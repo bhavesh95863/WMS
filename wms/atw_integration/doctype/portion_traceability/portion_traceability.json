@@ -1,0 +1,366 @@
+{
+ "allow_rename": 1,
+ "autoname": "field:portion_no",
+ "creation": "2022-05-23 18:01:45.108932",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "batch_no",
+  "column_break_2",
+  "portion_no",
+  "column_break_4",
+  "manufactured_item",
+  "column_break_6",
+  "current_warehouse",
+  "section_break_6",
+  "inspection_sales_order",
+  "manufacture_transfer_details_section",
+  "date_of_transfer",
+  "source_warehouse",
+  "column_break_11",
+  "dispatch_sales_order",
+  "target_warehouse",
+  "execution_item",
+  "section_break_15",
+  "actual_welder",
+  "certificate_welder",
+  "weld_no",
+  "date_of_welding",
+  "pwi",
+  "aen_xen",
+  "km_tp",
+  "lh_rh",
+  "welding",
+  "welding_tolerance",
+  "column_break_24",
+  "date_of_entry_of_tolerances",
+  "portion_slip_photo_link",
+  "tolerance_1_mtr_vertical",
+  "tolerance_1_mtr_horizontal",
+  "tolerance_10cm_vertical",
+  "tolerance_10cm_horizontal",
+  "photo_of_weld",
+  "location_of_weld",
+  "open_location",
+  "date_of_entry",
+  "debtors_list_entry_section",
+  "debtors_entry",
+  "column_break_35",
+  "billing_warehouse",
+  "usfd_test_result_section",
+  "internal_usfd_result",
+  "internal_usfd_report_link",
+  "column_break_40",
+  "external_usfd_result",
+  "external_usfd_report_link",
+  "atw_payment_status_section",
+  "joint_paid_cc_no",
+  "column_break_45",
+  "billing_agent",
+  "date_of_payment_receipt",
+  "ignore_portion"
+ ],
+ "fields": [
+  {
+   "fieldname": "batch_no",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Batch No",
+   "options": "Batch"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "portion_no",
+   "fieldtype": "Read Only",
+   "in_list_view": 1,
+   "label": "Portion No",
+   "unique": 1
+  },
+  {
+   "fieldname": "column_break_4",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "manufactured_item",
+   "fieldtype": "Link",
+   "label": "Manufactured Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "section_break_6",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "inspection_sales_order",
+   "fieldtype": "Link",
+   "label": "Inspection Sales Order",
+   "options": "Sales Order"
+  },
+  {
+   "fieldname": "manufacture_transfer_details_section",
+   "fieldtype": "Section Break",
+   "label": "Manufacture Transfer Details"
+  },
+  {
+   "fieldname": "date_of_transfer",
+   "fieldtype": "Date",
+   "label": "Date of Transfer"
+  },
+  {
+   "fieldname": "source_warehouse",
+   "fieldtype": "Link",
+   "label": "Source Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "column_break_11",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "dispatch_sales_order",
+   "fieldtype": "Link",
+   "label": "Dispatch Sales Order",
+   "options": "Sales Order"
+  },
+  {
+   "fieldname": "target_warehouse",
+   "fieldtype": "Link",
+   "label": "Target Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "execution_item",
+   "fieldtype": "Link",
+   "label": "Execution Item",
+   "options": "Item"
+  },
+  {
+   "fieldname": "section_break_15",
+   "fieldtype": "Section Break",
+   "label": "Welding Details"
+  },
+  {
+   "fieldname": "actual_welder",
+   "fieldtype": "Data",
+   "label": "Actual Welder"
+  },
+  {
+   "fieldname": "certificate_welder",
+   "fieldtype": "Data",
+   "label": "Certificate Welder"
+  },
+  {
+   "fieldname": "weld_no",
+   "fieldtype": "Data",
+   "label": "Weld No"
+  },
+  {
+   "fieldname": "date_of_welding",
+   "fieldtype": "Date",
+   "label": "DATE OF ENTRY OF WELD"
+  },
+  {
+   "fieldname": "pwi",
+   "fieldtype": "Read Only",
+   "label": "PWI"
+  },
+  {
+   "fieldname": "aen_xen",
+   "fieldtype": "Read Only",
+   "label": "AEN/XEN"
+  },
+  {
+   "fieldname": "km_tp",
+   "fieldtype": "Data",
+   "label": "KM/TP"
+  },
+  {
+   "fieldname": "lh_rh",
+   "fieldtype": "Select",
+   "label": "LH/RH",
+   "options": "LH\nRH"
+  },
+  {
+   "fieldname": "column_break_24",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "portion_slip_photo_link",
+   "fieldtype": "Small Text",
+   "label": "Portion Slip Photo Link"
+  },
+  {
+   "fieldname": "tolerance_1_mtr_vertical",
+   "fieldtype": "Data",
+   "label": "Tolerance 1 Mtr Vertical"
+  },
+  {
+   "fieldname": "tolerance_1_mtr_horizontal",
+   "fieldtype": "Data",
+   "label": "Tolerance 1 Mtr Horizontal"
+  },
+  {
+   "fieldname": "tolerance_10cm_vertical",
+   "fieldtype": "Data",
+   "label": "Tolerance 10cm Vertical"
+  },
+  {
+   "fieldname": "tolerance_10cm_horizontal",
+   "fieldtype": "Data",
+   "label": "Tolerance 10cm Horizontal"
+  },
+  {
+   "fieldname": "photo_of_weld",
+   "fieldtype": "Small Text",
+   "label": "Photo of weld"
+  },
+  {
+   "fieldname": "location_of_weld",
+   "fieldtype": "Small Text",
+   "label": "Location of weld",
+   "read_only": 1
+  },
+  {
+   "fieldname": "date_of_entry",
+   "fieldtype": "Date",
+   "label": "Date of Entry"
+  },
+  {
+   "fieldname": "debtors_list_entry_section",
+   "fieldtype": "Section Break",
+   "label": "DEBTORS LIST ENTRY"
+  },
+  {
+   "fieldname": "debtors_entry",
+   "fieldtype": "Data",
+   "label": "Debtors Entry"
+  },
+  {
+   "fieldname": "column_break_35",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "billing_warehouse",
+   "fieldtype": "Link",
+   "label": "Billing Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "fieldname": "usfd_test_result_section",
+   "fieldtype": "Section Break",
+   "label": "USFD TEST RESULT"
+  },
+  {
+   "fieldname": "internal_usfd_result",
+   "fieldtype": "Data",
+   "label": "Internal USFD Result"
+  },
+  {
+   "fieldname": "internal_usfd_report_link",
+   "fieldtype": "Data",
+   "label": "Internal USFD Report Link"
+  },
+  {
+   "fieldname": "column_break_40",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "external_usfd_result",
+   "fieldtype": "Data",
+   "label": "External USFD Result"
+  },
+  {
+   "fieldname": "external_usfd_report_link",
+   "fieldtype": "Data",
+   "label": "External USFD Report Link"
+  },
+  {
+   "fieldname": "atw_payment_status_section",
+   "fieldtype": "Section Break",
+   "label": "ATW Payment Status"
+  },
+  {
+   "fieldname": "joint_paid_cc_no",
+   "fieldtype": "Data",
+   "label": "Joint Paid CC No"
+  },
+  {
+   "fieldname": "column_break_45",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "billing_agent",
+   "fieldtype": "Data",
+   "label": "Billing Agent"
+  },
+  {
+   "fieldname": "date_of_payment_receipt",
+   "fieldtype": "Data",
+   "label": "Date of Payment Receipt"
+  },
+  {
+   "default": "0",
+   "fieldname": "welding",
+   "fieldtype": "Check",
+   "label": "Welding"
+  },
+  {
+   "default": "0",
+   "fieldname": "welding_tolerance",
+   "fieldtype": "Check",
+   "label": "Welding Tolerance"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "current_warehouse",
+   "fieldtype": "Link",
+   "label": "Current Warehouse",
+   "options": "Warehouse"
+  },
+  {
+   "default": "0",
+   "fieldname": "ignore_portion",
+   "fieldtype": "Check",
+   "label": "Ignore Portion"
+  },
+  {
+   "fieldname": "date_of_entry_of_tolerances",
+   "fieldtype": "Date",
+   "label": " DATE OF ENTRY OF TOLERANCES "
+  },
+  {
+   "fieldname": "open_location",
+   "fieldtype": "Button",
+   "label": "Location Link"
+  }
+ ],
+ "modified": "2023-04-13 19:17:15.699623",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Portion Traceability",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

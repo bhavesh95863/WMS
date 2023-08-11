@@ -1,0 +1,117 @@
+{
+ "autoname": "DEBENT.#####",
+ "creation": "2022-05-30 18:29:32.451033",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "site_warehouse",
+  "billing_warehouse",
+  "column_break_3",
+  "date",
+  "billing_sales_order",
+  "section_break_4",
+  "populate_data",
+  "check_all",
+  "uncheck_all",
+  "section_break_8",
+  "details",
+  "amended_from"
+ ],
+ "fields": [
+  {
+   "fieldname": "site_warehouse",
+   "fieldtype": "Link",
+   "label": "Site Execution Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "billing_warehouse",
+   "fieldtype": "Link",
+   "label": "Billing Warehouse",
+   "options": "Warehouse",
+   "reqd": 1
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "populate_data",
+   "fieldtype": "Button",
+   "label": "Populate Data"
+  },
+  {
+   "fieldname": "check_all",
+   "fieldtype": "Button",
+   "label": "Check All"
+  },
+  {
+   "fieldname": "uncheck_all",
+   "fieldtype": "Button",
+   "label": "Uncheck All"
+  },
+  {
+   "fieldname": "section_break_8",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "amended_from",
+   "fieldtype": "Link",
+   "label": "Amended From",
+   "no_copy": 1,
+   "options": "Debtors Entry",
+   "print_hide": 1,
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_3",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "details",
+   "fieldtype": "Table",
+   "label": "Debtors Entry Details",
+   "options": "Debtors Entry Details"
+  },
+  {
+   "fieldname": "billing_sales_order",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Billing Sales Order",
+   "options": "Sales Order",
+   "reqd": 1
+  },
+  {
+   "default": "Today",
+   "fieldname": "date",
+   "fieldtype": "Date",
+   "label": "Date of Entry",
+   "read_only": 1
+  }
+ ],
+ "is_submittable": 1,
+ "modified": "2023-02-27 01:22:21.219417",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Debtors Entry",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}

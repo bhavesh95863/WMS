@@ -1,0 +1,117 @@
+{
+ "creation": "2022-06-15 12:11:50.599296",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "question",
+  "column_break_2",
+  "question_details",
+  "section_break_4",
+  "option1",
+  "column_break_6",
+  "option2",
+  "column_break_8",
+  "option3",
+  "column_break_10",
+  "option4",
+  "section_break_12",
+  "answer_by_welder",
+  "column_break_14",
+  "correct_answer",
+  "weightage"
+ ],
+ "fields": [
+  {
+   "fieldname": "question",
+   "fieldtype": "Link",
+   "label": "Question",
+   "options": "ATW Question"
+  },
+  {
+   "fieldname": "column_break_2",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "question.question",
+   "fieldname": "question_details",
+   "fieldtype": "Small Text",
+   "label": "Question Details"
+  },
+  {
+   "fieldname": "section_break_4",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fetch_from": "question.option1",
+   "fieldname": "option1",
+   "fieldtype": "Data",
+   "label": "Option1"
+  },
+  {
+   "fieldname": "column_break_6",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "question.option2",
+   "fieldname": "option2",
+   "fieldtype": "Data",
+   "label": "Option2"
+  },
+  {
+   "fieldname": "column_break_8",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "question.option3",
+   "fieldname": "option3",
+   "fieldtype": "Data",
+   "label": "Option3"
+  },
+  {
+   "fieldname": "column_break_10",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "question.option4",
+   "fieldname": "option4",
+   "fieldtype": "Data",
+   "label": "Option4"
+  },
+  {
+   "fieldname": "section_break_12",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "answer_by_welder",
+   "fieldtype": "Read Only",
+   "label": "Answer By Welder"
+  },
+  {
+   "fieldname": "column_break_14",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fetch_from": "question.answer",
+   "fieldname": "correct_answer",
+   "fieldtype": "Read Only",
+   "label": "Correct Answer"
+  },
+  {
+   "fieldname": "weightage",
+   "fieldtype": "Int",
+   "label": "Weightage"
+  }
+ ],
+ "istable": 1,
+ "modified": "2022-06-15 12:14:14.192216",
+ "modified_by": "Administrator",
+ "module": "ATW Integration",
+ "name": "Atw Exam Question",
+ "owner": "Administrator",
+ "permissions": [],
+ "quick_entry": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "track_changes": 1
+}
