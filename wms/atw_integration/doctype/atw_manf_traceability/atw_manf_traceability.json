@@ -6,6 +6,8 @@
  "field_order": [
   "batch_no",
   "portion_no_from",
+  "is_opening",
+  "execution_item",
   "populate_data",
   "check_all",
   "uncheck_all",
@@ -129,10 +131,23 @@
    "label": "Trial Joints External Results",
    "options": "Trial Joints External Results",
    "read_only": 1
+  },
+  {
+   "default": "0",
+   "fieldname": "is_opening",
+   "fieldtype": "Check",
+   "label": "Is Opening"
+  },
+  {
+   "depends_on": "is_opening",
+   "fieldname": "execution_item",
+   "fieldtype": "Link",
+   "label": "Execution Item",
+   "options": "Item"
   }
  ],
  "is_submittable": 1,
- "modified": "2023-01-02 11:12:40.738303",
+ "modified": "2023-08-14 19:07:51.499778",
  "modified_by": "Administrator",
  "module": "ATW Integration",
  "name": "ATW Manf Traceability",

@@ -61,7 +61,12 @@ class ATWManfTraceability(Document):
         for row in self.details:
             if row.select:
                 create_portion_traceability(
-                    row.batch_no, row.item, row.portion_no, self.warehouse
+                    row.batch_no,
+                    row.item,
+                    row.portion_no,
+                    self.warehouse,
+                    self.is_opening,
+                    self.execution_item,
                 )
 
     def popuplate_result_category(self):
@@ -113,10 +118,15 @@ class ATWManfTraceability(Document):
         )
 
 
-def create_portion_traceability(batch_no, item, portion_no, warehouse):
+def create_portion_traceability(
+    batch_no, item, portion_no, warehouse, is_opening=False, execution_item=None
+):
     doc = frappe.new_doc("Portion Traceability")
     doc.batch_no = batch_no
     doc.portion_no = portion_no
     doc.manufactured_item = item
     doc.current_warehouse = warehouse
+    if is_opening:
+        doc.target_warehouse = warehouse
+        doc.execution_item = execution_item
     doc.insert(ignore_permissions=True)
