@@ -162,8 +162,8 @@ def update_portion_traceability_record(
     filters = [
         ["Portion Traceability", "batch_no", "=", batch_no],
         ["Portion Traceability", "portion_no", "=", portion_no],
-        ["Portion Traceability", "date_of_transfer", "is", "not set"],
     ]
+
     portion_trace_details = frappe.get_all(
         "Portion Traceability", filters=filters, fields=["name"]
     )
