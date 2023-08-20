@@ -37,12 +37,16 @@ def login(usr, pwd):
 @frappe.whitelist()
 def get_batch_list(employee):
     try:
-        warehouse = frappe.db.get_value("Warehouse", {"employee": employee}, "name")
-        if not warehouse:
+        warehouse = frappe.get_all(
+            "Warehouse", filters={"employee": employee}, fields=["name"]
+        )
+        if not len(warehouse):
             return gen_response(200, "No any linked warehouse with loggedin user", [])
+        warehouse = [row.name for row in warehouse]
         batches = frappe.db.sql(
-            """select distinct batch_no as 'batch_no','' as 'portion_length' from `tabPortion Traceability` where current_warehouse=%s and target_warehouse is not null""",
-            warehouse,
+            """select distinct batch_no as 'batch_no','' as 'portion_length' from `tabPortion Traceability` where current_warehouse in (%s) and target_warehouse is not null"""
+            % ", ".join(["%s"] * len(warehouse)),
+            tuple(warehouse),
             as_dict=1,
         )
         for batch in batches:
@@ -51,7 +55,7 @@ def get_batch_list(employee):
                     "Portion Traceability",
                     filters=[
                         ["Portion Traceability", "batch_no", "=", batch.batch_no],
-                        ["Portion Traceability", "current_warehouse", "=", warehouse],
+                        ["Portion Traceability", "current_warehouse", "in", warehouse],
                         ["Portion Traceability", "target_warehouse", "is", "set"],
                     ],
                     fields=["name"],
