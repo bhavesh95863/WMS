@@ -122,16 +122,13 @@ def extend_date_request(task_id, date, reason=None):
 
 
 def get_permission_query_conditions(user):
-    if not user:
-        user = frappe.session.user
-    if user == "Administrator" or "WMS Admin" in frappe.get_roles(user):
-        return
-    return (
-        """(`tabWMS Task`.`assign_by`=%(user)s or `tabWMS Task`.`assign_to`=%(user)s)"""
-        % {
-            "user": frappe.db.escape(user),
-        }
-    )
+
+	if not user: user = frappe.session.user
+	if user == "Administrator" or "WMS Admin" in frappe.get_roles(user) or "QCWMS" in frappe.get_roles(user):
+		return
+	return """(`tabWMS Task`.`assign_by`=%(user)s or `tabWMS Task`.`assign_to`=%(user)s)""" % {
+			"user": frappe.db.escape(user),
+		}
 
 
 @frappe.whitelist()
