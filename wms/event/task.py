@@ -171,7 +171,8 @@ def create_task(task, task_type, context=None):
 		details= frappe.render_template(task.get('task_details'),context) if context else task.get('task_details'),
 		task_title=task.get('task_title'),
 		assign_to=task.get('assign_to'),
-		assign_by=task.get('assign_from')
+		assign_by=task.get('assign_from'),
+		task_action_template = task.get('task_action')
 	)).insert(ignore_permissions=True)
 
 def get_context(doc):
@@ -184,11 +185,11 @@ def update_task_status():
 	]
 	tasks = frappe.get_all("WMS Task",filters=filters,fields=["name"])
 	for task in tasks:
-		task_doc = frappe.get_doc("WMS Task",task.name)
-		old_status = task_doc.status
-		task_doc.validate()
-		if not task_doc.status == old_status:
-			try:
+		try:
+			task_doc = frappe.get_doc("WMS Task",task.name)
+			old_status = task_doc.status
+			task_doc.validate()
+			if not task_doc.status == old_status:
 				task_doc.save()
-			except Exception as e:
-				frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())
+		except Exception as e:
+			frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())

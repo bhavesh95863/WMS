@@ -11,7 +11,8 @@
   "mobile_number",
   "column_break_4",
   "type_of_contract",
-  "email_id"
+  "email_id",
+  "group"
  ],
  "fields": [
   {
@@ -43,9 +44,15 @@
    "fieldname": "email_id",
    "fieldtype": "Data",
    "label": "Email ID"
+  },
+  {
+   "fieldname": "group",
+   "fieldtype": "Link",
+   "label": "Group",
+   "options": "Group"
   }
  ],
- "modified": "2022-04-02 12:21:19.690794",
+ "modified": "2022-06-22 01:21:53.336570",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Lead",

@@ -93,6 +93,9 @@ doc_events = {
     "Order Execution Ledger ATW":{
          "on_change": ["wms.event.project.on_update_order_execution"],
          "before_insert": ["wms.event.project.on_update_order_execution"]
+    },
+    "Payment Transfer From One Order To Another":{
+        "on_submit":"wms.event.payment_transfer.on_submit_payment_transfer"
     }
 }
 

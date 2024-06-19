@@ -28,7 +28,7 @@ def after_insert_communication(self,method):
                 return
             for index,variable in enumerate(doc.message_variable):
                 # value = BeautifulSoup(variables[index])
-                variable.value = str(variables[index]).replace('\r\n','; ')
+                variable.value = str(variables[index]).replace('<br>','; ').replace('\r\n','; ')
             doc.submit()
         except Exception as e:
             frappe.log_error(title='WMS Error Log', message=frappe.get_traceback())

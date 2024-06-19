@@ -71,8 +71,8 @@ def send_message_using_template(self,rule):
         data = []
         for field in rule.template_variable:
             data.append({
-                'name': field.get('template_variable'),
-                'value': self.get(field.get('document_variable'))
+                'name': cstr(field.get('template_variable')),
+                'value': cstr(self.get(field.get('document_variable')))
             })
         if rule.rule_based_on == "Sales Order":
             if rule.ref_doctype == "Sales Order":
@@ -148,6 +148,12 @@ def send_whatsapp_message(template,mobile,data,document,foreign=False):
     }
 
     response = requests.request("POST", base_url, data=payload, headers=headers)
+    whatsapp_log_params = []
+    for param in json.loads(data):
+        whatsapp_log_params.append(dict(
+            param = param.get('name'),
+            value = param.get('value')
+        ))
     # frappe.log_error(response)
     frappe.get_doc(dict(
         doctype = "Whatsapp Message Log",
@@ -157,7 +163,10 @@ def send_whatsapp_message(template,mobile,data,document,foreign=False):
         headers = json.dumps(headers),
         status_code = response.status_code,
         response = response.text,
-        document = document
+        document = document,
+        template = template,
+        template_message = frappe.db.get_value("Message Template",template,"template_message"),
+        whatsapp_log_params = whatsapp_log_params
 
     )).insert(ignore_permissions = True)
     frappe.msgprint(_('Whatsapp Message sent on {0}').format(mobile), alert=True, indicator='green')

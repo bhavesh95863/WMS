@@ -28,7 +28,11 @@
   "section_break_8",
   "assign_by",
   "column_break_10",
-  "assign_to"
+  "assign_to",
+  "section_break_24",
+  "task_action_template",
+  "column_break_26",
+  "task_action"
  ],
  "fields": [
   {
@@ -162,9 +166,27 @@
    "fieldtype": "Check",
    "label": "Mark Incomplete",
    "read_only": 1
+  },
+  {
+   "fieldname": "section_break_24",
+   "fieldtype": "Section Break"
+  },
+  {
+   "fieldname": "task_action_template",
+   "fieldtype": "Small Text",
+   "label": "How to check"
+  },
+  {
+   "fieldname": "column_break_26",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "task_action",
+   "fieldtype": "Small Text",
+   "label": "Task Action"
   }
  ],
- "modified": "2022-04-21 12:19:58.575689",
+ "modified": "2022-06-23 12:52:17.913387",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task",
