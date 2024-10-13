@@ -37,6 +37,7 @@ class DebtorsEntry(Document):
         filters = [
             ["Portion Traceability", "debtors_entry", "is", "not set"],
             ["Portion Traceability", "welding_tolerance", "=", 1],
+            ["Portion Traceability","current_warehouse",self.site_warehouse]
         ]
         portion_trace_details = frappe.get_all(
             "Portion Traceability",
