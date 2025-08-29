@@ -2,6 +2,29 @@
 // For license information, please see license.txt
 
 frappe.ui.form.on('WMS Task', {
+	setup(frm) {
+		frm.set_query("assign_to_manager", function() {
+			return {
+				filters: {
+					"department": frm.doc.department
+				}
+			};
+		});
+		frm.set_query("department", function() {
+			return {
+				filters: {
+					"disabled": 0
+				}
+			};
+		});
+		frm.set_query("sub_assign_to", function() {
+			return {
+				filters: {
+					"reports_to": frm.doc.assign_to_manager
+				}
+			};
+		});
+	},
 	refresh(frm,cdt,cdn) {
 		// your code here
 		frm.trigger("make_fields_readonly")
@@ -51,6 +74,21 @@ frappe.ui.form.on('WMS Task', {
 				frm.refresh()
 			}
 		})
+	},
+	department:function(frm,cdt,cdn) {
+		if(frm.doc.department){
+			frappe.call({
+				method: "wms.wms.doctype.wms_task.wms_task.get_department_users",
+				args: {
+					department: frm.doc.department
+				},
+				callback: function(r) {
+					if(r.message) {
+						frappe.model.set_value(cdt, cdn, "assign_to_manager", r.message);
+					}
+				}
+			});
+		}
 	},
 	refresh: function(frm) {
 		if((frm.doc.status == "Not Yet Due" || frm.doc.status == "Due Today" || frm.doc.status == "Without Due Date" || frm.doc.status == "Overdue") && frm.doc.assign_to == frappe.session.user) {

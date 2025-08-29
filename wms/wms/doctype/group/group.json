@@ -9,6 +9,7 @@
   "group_name",
   "column_break_2",
   "group_type",
+  "type_of_contract",
   "mode_of_sending_section",
   "teams",
   "column_break_4",
@@ -101,9 +102,16 @@
    "fieldname": "disable_all",
    "fieldtype": "Button",
    "label": "Disable All"
+  },
+  {
+   "depends_on": "eval:doc.group_type == \"WMS Lead\"",
+   "fieldname": "type_of_contract",
+   "fieldtype": "Select",
+   "label": "Type of Contract",
+   "options": "\nRailway\nPrivate\nPersonal\nForeign"
   }
  ],
- "modified": "2022-03-31 16:38:57.531237",
+ "modified": "2024-12-13 02:12:34.467888",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "Group",

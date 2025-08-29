@@ -4,6 +4,9 @@
 frappe.ui.form.on('Group', {
 	group_type: function(frm,cdt,cdn) {
 		var doc = locals[cdt][cdn];
+		if(doc.group_type == "WMS Lead" && !doc.type_of_contract){
+			return
+		}
 		frm.call({
 			method:"get_group_type_details",
 			doc: frm.doc,
@@ -13,6 +16,9 @@ frappe.ui.form.on('Group', {
 				frm.refresh_field("table_9");
 			}
 		})
+	},
+	type_of_contract:function(frm,cdt,cdn){
+		frm.trigger("group_type")
 	},
 	enable_all: function(frm){
 		frm.call({

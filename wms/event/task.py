@@ -172,6 +172,7 @@ def create_task(task, task_type, context=None):
 		task_title=task.get('task_title'),
 		assign_to=task.get('assign_to'),
 		assign_by=task.get('assign_from'),
+		assign_to_manager = task.get('assign_to_manager'),
 		task_action_template = task.get('task_action')
 	)).insert(ignore_permissions=True)
 

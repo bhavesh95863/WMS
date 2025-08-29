@@ -28,7 +28,11 @@
   "section_break_8",
   "assign_by",
   "column_break_10",
+  "department",
+  "assign_to_manager",
   "assign_to",
+  "sub_assign_to",
+  "sub_assign_to_user",
   "section_break_24",
   "task_action_template",
   "column_break_26",
@@ -83,10 +87,13 @@
    "fieldtype": "Section Break"
   },
   {
+   "fetch_from": "assign_to_manager.user",
+   "fetch_if_empty": 1,
    "fieldname": "assign_to",
    "fieldtype": "Link",
-   "label": "Assign To",
+   "label": "Assign To User",
    "options": "User",
+   "read_only": 1,
    "reqd": 1
   },
   {
@@ -184,9 +191,36 @@
    "fieldname": "task_action",
    "fieldtype": "Small Text",
    "label": "Task Action"
+  },
+  {
+   "fieldname": "assign_to_manager",
+   "fieldtype": "Link",
+   "label": "Assign To",
+   "options": "Employee Manager",
+   "read_only": 1
+  },
+  {
+   "fieldname": "sub_assign_to",
+   "fieldtype": "Link",
+   "label": "Sub Assign to",
+   "options": "Employee"
+  },
+  {
+   "fetch_from": "sub_assign_to.user_id",
+   "fieldname": "sub_assign_to_user",
+   "fieldtype": "Link",
+   "label": "Sub Assign to User",
+   "options": "User",
+   "read_only": 1
+  },
+  {
+   "fieldname": "department",
+   "fieldtype": "Link",
+   "label": "Department",
+   "options": "Department"
   }
  ],
- "modified": "2022-06-23 12:52:17.913387",
+ "modified": "2025-08-14 17:37:15.763784",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task",

@@ -182,3 +182,13 @@ def get_holidays(user, due_date):
         return True
     else:
         return False
+
+@frappe.whitelist()
+def get_department_users(department):
+    users = frappe.get_all("Employee Manager",filters={"department": department},fields=["name"])
+    if len(users) > 1:
+        return None
+    elif len(users) == 1:
+        return users[0].name
+    else:
+        return None

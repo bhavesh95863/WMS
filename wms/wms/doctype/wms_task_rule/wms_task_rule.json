@@ -10,6 +10,7 @@
   "due_days",
   "column_break_3",
   "assign_from",
+  "assign_to_manager",
   "assign_to",
   "recurring",
   "event",
@@ -85,10 +86,13 @@
    "fieldtype": "Column Break"
   },
   {
+   "fetch_from": "assign_to_manager.user",
+   "fetch_if_empty": 1,
    "fieldname": "assign_to",
    "fieldtype": "Link",
-   "label": "Assign To",
-   "options": "User"
+   "label": "Assign to User",
+   "options": "User",
+   "read_only": 1
   },
   {
    "fieldname": "section_break_5",
@@ -185,9 +189,15 @@
    "fieldname": "task_action",
    "fieldtype": "Small Text",
    "label": "How to check"
+  },
+  {
+   "fieldname": "assign_to_manager",
+   "fieldtype": "Link",
+   "label": "Assign To",
+   "options": "Employee Manager"
   }
  ],
- "modified": "2022-06-23 12:52:28.002641",
+ "modified": "2025-08-06 03:33:19.500400",
  "modified_by": "Administrator",
  "module": "WMS",
  "name": "WMS Task Rule",

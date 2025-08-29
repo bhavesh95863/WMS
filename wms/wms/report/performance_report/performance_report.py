@@ -94,6 +94,7 @@ def get_columns(filters):
 
 def get_data(filters):
 	data = []
+	employee_increment_percentage = {}
 	if not filters.get("employee"):
 		users = []
 		if "WMS Admin" in frappe.get_roles():
@@ -103,26 +104,86 @@ def get_data(filters):
 		if users:
 			for user in users:
 				if not user.name in ["Administrator"]:
-					frappe.errprint(user.get('name'))
-					issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
-											filters.get("from_date"), filters.get("to_date")]],["assign_to","=",user.get('name')]], fields=["*"])
-					row = dict(
-						date_from = filters.get("from_date"),
-						date_to = filters.get("to_date"),
-						employee_name = frappe.db.get_value("User",user.name,"full_name")
-					)
-					get_filters_data(row,issues,filters)
-					data.append(row)
+					if frappe.db.exists("Employee Manager",{"user":user.name}):
+						issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
+												filters.get("from_date"), filters.get("to_date")]],["assign_to","=",user.get('name')]], fields=["*"])
+						row = dict(
+							date_from = filters.get("from_date"),
+							date_to = filters.get("to_date"),
+							employee_name = frappe.db.get_value("User",user.name,"full_name")
+						)
+							
+						get_filters_data(row,issues,filters)
+						employee = frappe.db.get_value("Employee",{"user_id":user.name},"name")
+						if employee:
+							employee_increment_percentage[employee] = row["salary_increment_age"]
+							row["employee"] = employee
+						data.append(row)
+					else:
+						and_filters = [
+							["date_of_issue", "between", [
+												filters.get("from_date"), filters.get("to_date")]],
+
+						]
+						or_filters = [
+							["assign_to", "=", user.get('name')],
+							["sub_assign_to_user", "=", user.get('name')]
+						]
+						issues = frappe.get_all("WMS Task", filters=and_filters, or_filters=or_filters, fields=["*"])
+						row = dict(
+							date_from = filters.get("from_date"),
+							date_to = filters.get("to_date"),
+							employee_name = frappe.db.get_value("User",user.name,"full_name")
+						)
+							
+						get_filters_data(row,issues,filters)
+						employee = frappe.db.get_value("Employee",{"user_id":user.name},"name")
+						if employee:
+							employee_increment_percentage[employee] = row["salary_increment_age"]
+							row["employee"] = employee
+						data.append(row)
+
 	else:
-		issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
-								filters.get("from_date"), filters.get("to_date")]],["assign_to","=",filters.get("employee")]], fields=["*"])
-		row = dict(
-			date_from = filters.get("from_date"),
-			date_to = filters.get("to_date"),
-			employee_name = frappe.db.get_value("User",filters.get("employee"),"full_name")
-		)
-		get_filters_data(row,issues,filters)
-		data.append(row)
+		if frappe.db.exists("Employee Manager",{"user":filters.get("employee")}):
+			issues = frappe.get_all("WMS Task", filters=[["date_of_issue", "between", [
+									filters.get("from_date"), filters.get("to_date")]],["assign_to","=",filters.get("employee")]], fields=["*"])
+			row = dict(
+				date_from = filters.get("from_date"),
+				date_to = filters.get("to_date"),
+				employee_name = frappe.db.get_value("User",filters.get("employee"),"full_name")
+			)
+			get_filters_data(row,issues,filters)
+			employee = frappe.db.get_value("Employee",{"user_id":user.name},"name")
+			if employee:
+				employee_increment_percentage[employee] = row["salary_increment_age"]
+			data.append(row)
+		else:
+			and_filters = [
+				["date_of_issue", "between", [
+									filters.get("from_date"), filters.get("to_date")]],
+			]
+			or_filters = [
+				["assign_to", "=", filters.get('employee')],
+				["sub_assign_to_user", "=", filters.get('employee')]
+			]
+			issues = frappe.get_all("WMS Task", filters=and_filters, or_filters=or_filters, fields=["*"])
+			row = dict(
+				date_from = filters.get("from_date"),
+				date_to = filters.get("to_date"),
+				employee_name = frappe.db.get_value("User",filters.get("employee"),"full_name")
+			)
+			get_filters_data(row,issues,filters)
+			employee = frappe.db.get_value("Employee",{"user_id":filters.get("employee")},"name")
+			if employee:
+				employee_increment_percentage[employee] = row["salary_increment_age"]
+			data.append(row)
+	for row in data:
+		if not flt(row["salary_increment_age"]) > 0:
+			report_to = frappe.db.get_value("Employee",row["employee"],"reports_to")
+			if report_to:
+				if employee_increment_percentage.get(report_to):
+					row["salary_increment_age"] = employee_increment_percentage.get(report_to)
+
 	return data
 
 def get_users():

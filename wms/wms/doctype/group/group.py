@@ -19,7 +19,10 @@ class Group(Document):
 				"WMS Lead": ["name as 'link'","name","mobile_number as 'whatsapp_mobile_no'"],	
 			}
 			if not self.group_type == "Sales Order":
-				group_data = frappe.get_all(self.group_type,filters={},fields=doctype_fields_mape.get(self.group_type), order_by="modified desc")
+				filters = []
+				if self.group_type == "WMS Lead":
+					filters = [["type_of_contract","=",self.type_of_contract]]
+				group_data = frappe.get_all(self.group_type,filters=filters,fields=doctype_fields_mape.get(self.group_type), order_by="modified desc")
 				for row in group_data:
 					self.append("table_9",dict(
 						group_type = self.group_type,
